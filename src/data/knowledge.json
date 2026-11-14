@@ -1,0 +1,260 @@
+[
+ {
+  "id": "resume-0",
+  "source": "resume",
+  "title": "About Shubham Patel",
+  "text": "Shubham Patel is a Software Engineer (Full-Stack · Guidewire PolicyCenter · GenAI/RAG) based in Raigarh, Chhattisgarh, India.\nSoftware Engineer at LTIMindtree specializing in full-stack and Guidewire PolicyCenter development within the P&C insurance domain, with hands-on expertise in Java, Spring Boot, Angular, React, Next.js, and REST APIs. I build scalable applications, improve user experiences, and collaborate across teams to turn business requirements into reliable software.\nCurrent focus: Full-stack engineering across Spring Boot, Angular and React, with a growing focus on GenAI/RAG systems — building retrieval pipelines, vector search, and applied ML on top of production-grade backends.\nHighlights: Full-stack apps shipped: 3+; Team led (FarmAid Gladiator): 5; Enterprise training milestones: 90%+.\nEmail: vtshubham01@gmail.com. GitHub: https://github.com/Shubhampatel001. LinkedIn: https://www.linkedin.com/in/shubhampatel001/."
+ },
+ {
+  "id": "resume-1",
+  "source": "resume",
+  "title": "Experience: Software Engineer at LTM, Pune",
+  "text": "Software Engineer at LTM, Pune (Jun 2025 – Present).\n- Completed enterprise training in Guidewire PolicyCenter, Jutro Digital, Core Java, Spring Boot, and Angular, achieving 90%+ scores across all assessed milestones.\n- Built 3+ full-stack applications using Spring Boot, Angular, React, Node.js, PostgreSQL, and REST APIs, implementing authentication, database integration, and end-to-end frontend-backend workflows.\n- Applied Guidewire Jutro concepts to develop digital user experiences for an insurance module, collaborating with product and engineering teams on workflow customization, feature implementation, and UI development.\n- Implemented authentication, authorization, API integrations, and centralized exception handling using Spring Security.\n- Led and mentored a 5-member team in the FarmAid Gladiator project, coordinating sprint planning, task allocation, code reviews, testing activities, and project delivery.\n- Integrated Swagger-based API documentation and structured logging to improve maintainability and debugging efficiency.\nTech: Spring Boot, Angular, React, Node.js, PostgreSQL, Guidewire, Spring Security, Swagger."
+ },
+ {
+  "id": "resume-2",
+  "source": "resume",
+  "title": "Experience: Graduate Engineering Trainee at LTIMindtree, Bhubaneswar",
+  "text": "Graduate Engineering Trainee at LTIMindtree, Bhubaneswar (Jun 2025 – Aug 2025).\n- Completed Java full-stack training with hands-on work in Core Java, Spring Boot, and Angular.\n- Led a project team while strengthening technical, communication, and collaboration skills.\nTech: Core Java, Spring Boot, Angular, Team Leadership."
+ },
+ {
+  "id": "resume-3",
+  "source": "resume",
+  "title": "Experience: Video Editor at AnsrCoach",
+  "text": "Video Editor at AnsrCoach (Nov 2022 – Feb 2023).\n- Edited 15+ professional videos using Adobe Premiere Pro and After Effects, delivering every project ahead of deadline.\n- Introduced motion-graphics techniques that streamlined the editing process by 25% and increased client satisfaction by 20%.\nTech: Adobe Premiere Pro, After Effects, Motion Graphics."
+ },
+ {
+  "id": "resume-4",
+  "source": "resume",
+  "title": "Experience: Intern at Jindal Steel & Power Ltd., Raigarh",
+  "text": "Intern at Jindal Steel & Power Ltd., Raigarh (Jun 2022 – Aug 2022).\n- Coordinated documentation for 5+ active projects, enabling senior engineers to reduce milestone tracking time by 20% through improved record management and compliance reporting.\nTech: Documentation, Process Improvement."
+ },
+ {
+  "id": "resume-5",
+  "source": "resume",
+  "title": "Project: Dice Game",
+  "text": "Dice Game (Mar 2024, Games): Interactive two-dice JavaScript game.\nProblem: Create a lightweight browser game that gives a clear outcome from a random two-dice roll.\nSolution: Built an interactive single-player game that generates two random dice values and displays the winner based on the higher roll.\nLearnings: Randomized state needs immediate, easy-to-read visual feedback; Simple interaction design can make a compact browser game feel responsive.\nTech: HTML, CSS, JavaScript.\nSource: https://github.com/Shubhampatel001/Dice-Game\nLive demo: https://shubhampatel001.github.io/Dice-Game/"
+ },
+ {
+  "id": "resume-6",
+  "source": "resume",
+  "title": "Project: Drum Kit",
+  "text": "Drum Kit (Mar 2024, Games): Keyboard and touch-controlled web instrument.\nProblem: Make drum sounds accessible through both physical keyboard input and touch interaction in the browser.\nSolution: Developed a web-based drum kit that maps keyboard and touch interactions to simulated drum sounds.\nLearnings: Supporting multiple input methods makes interactive experiences more accessible; Immediate audio and visual response is essential for musical interfaces.\nTech: HTML, CSS, JavaScript.\nSource: https://github.com/Shubhampatel001/Drum-Kit\nLive demo: https://shubhampatel001.github.io/Drum-Kit/"
+ },
+ {
+  "id": "resume-7",
+  "source": "resume",
+  "title": "Project: Simon Game Challenge",
+  "text": "Simon Game Challenge (Mar 2024, Games): Progressive memory game with lights and sounds.\nProblem: Build a game that tests memory and coordination by asking players to reproduce an increasingly complex sequence.\nSolution: Created a Simon-style game that presents a sequence of lights and sounds for players to repeat, increasing the challenge with every round.\nLearnings: Game difficulty can scale naturally through progressive sequence length; Clear state transitions help players understand interactive challenges.\nTech: HTML, CSS, JavaScript.\nSource: https://github.com/Shubhampatel001/Simon-Game-Challenge\nLive demo: https://shubhampatel001.github.io/Simon-Game-Challenge/"
+ },
+ {
+  "id": "resume-8",
+  "source": "resume",
+  "title": "Project: FarmAid",
+  "text": "FarmAid (Oct 2026, Full Stack): Agricultural loan schemes: browse, apply, track.\nProblem: Farmers need one place to find agricultural loan schemes, apply online and follow the status of their applications, while loan officers need to manage schemes and decide on applications.\nSolution: Built a full-stack web application where farmers browse loan schemes, apply online and track applications, and loan officers (admins) manage the schemes and approve or reject applications. Java backend with a TypeScript frontend, containerised with Docker and checked by a CI workflow, and deployed with a live demo.\nLearnings: Separate farmer and officer workflows make an approval process easy to follow; Containerising the app makes a full demo runnable with one command.\nTech: Java, TypeScript, Docker, CI.\nSource: https://github.com/Shubhampatel001/farmAid\nLive demo: https://farmaid-onhl.onrender.com/"
+ },
+ {
+  "id": "resume-9",
+  "source": "resume",
+  "title": "Project: Digital Wedding Invitation",
+  "text": "Digital Wedding Invitation (Jan 2026 – Mar 2026, Web): Animated, mobile-friendly invitation card.\nProblem: A wedding invitation that guests can open on any phone, without printing or sharing a PDF.\nSolution: Built a digital invitation as a React (Vite) web app with a tap-to-begin intro, deployed on Vercel.\nLearnings: A short, tap-to-begin intro sets the tone and works well on mobile.\nTech: React, Vite, JavaScript, CSS.\nSource: https://github.com/Shubhampatel001/anisha-naman-wedding\nLive demo: https://anisha-naman-wedding.vercel.app"
+ },
+ {
+  "id": "resume-10",
+  "source": "resume",
+  "title": "Project: Legal Docs",
+  "text": "Legal Docs (Jan 2023, Full Stack): Legal-document management web application.\nProblem: Legal documents need to be easy to access and manage within a single, clear workflow.\nSolution: Built a web application that lets users view, create, and manage legal documents from one platform.\nLearnings: Document workflows work best when creating, viewing, and managing records are easy to find; Clear information architecture is essential for document-heavy applications.\nTech: Web Application, Document Management."
+ },
+ {
+  "id": "resume-11",
+  "source": "resume",
+  "title": "Project: Perplexa Chat",
+  "text": "Perplexa Chat (Dec 2024 – Apr 2025, AI/ML): AI-powered RAG-based search assistant.\nProblem: Searching across large, unstructured knowledge bases (10,000+ document entries) was slow and imprecise, with no way to ask natural-language questions over the corpus.\nSolution: Designed and launched a Streamlit-based RAG application used by 50+ testers, integrating MongoDB vector embeddings with GenAI APIs and a real-time retrieval pipeline with an optimized chunking strategy — cutting query response time by 40% and improving search usability by 60%.\nLearnings: Chunking strategy has an outsized effect on retrieval quality and latency; Vector search performance at 10k+ document scale requires deliberate indexing choices; Fast user feedback loops (50+ testers) surfaced UX gaps a solo build would have missed.\nTech: Python, Streamlit, MongoDB, Vector Embeddings, RAG, GenAI APIs.\nSource: https://github.com/Shubhampatel001/Perplexa\nLive demo: https://perplexa.streamlit.app/"
+ },
+ {
+  "id": "resume-12",
+  "source": "resume",
+  "title": "Project: EvoDrive",
+  "text": "EvoDrive (Jul 2024 – Nov 2024, AI/ML): Genetic algorithm for autonomous driving.\nProblem: Autonomous navigation in a simulated environment needed to learn obstacle avoidance and efficient pathfinding without hand-coded rules for every scenario.\nSolution: Engineered a driving simulation that reached 90% obstacle-avoidance accuracy through iterative genetic algorithm optimization across 200+ training generations, then integrated Dijkstra's algorithm to cut pathfinding computation time by 30% and improve route efficiency and stability.\nLearnings: Genetic algorithms converge unevenly — generation count matters less than fitness function design; Combining a classical algorithm (Dijkstra) with an evolutionary one can outperform either alone; Simulation stability across variable test environments is its own engineering problem.\nTech: Python, Genetic Algorithms, Dijkstra's Algorithm, Simulation.\nSource: https://github.com/Shubhampatel001/EvoDrive-Genetic-Algorithm-for-Autonomous-Driving\nLive demo: https://shubhampatel001.github.io/EvoDrive-Genetic-Algorithm-for-Autonomous-Driving/"
+ },
+ {
+  "id": "resume-13",
+  "source": "resume",
+  "title": "Project: Flappy Bird with NEAT",
+  "text": "Flappy Bird with NEAT (Jan 2024 – May 2024, AI/ML): Neuro-evolution agent that learns to play.\nProblem: Teaching an agent to play Flappy Bird with zero human input after training, using an evolving neural network rather than fixed rules.\nSolution: Developed an AI agent using the NEAT neuro-evolution algorithm, increasing fitness scores by 150% over 500 generations through systematic parameter tuning and network topology optimization — reaching fully autonomous gameplay after just 40 generations.\nLearnings: Topology evolution (not just weight tuning) accelerated convergence significantly; Fitness scoring design directly shapes what behavior actually evolves; 40 generations was enough for competence; 500 kept refining margins.\nTech: Python, NEAT Algorithm, Neuro-evolution, Pygame.\nSource: https://github.com/Shubhampatel001/Flappy-Bird-With-NEAT-Algorithm"
+ },
+ {
+  "id": "resume-14",
+  "source": "resume",
+  "title": "Skills and tech stack",
+  "text": "Languages: Java, Gosu, Python, C++, JavaScript, TypeScript\nFrameworks: Spring Boot, Angular, React, Next.js, Node.js, Guidewire PolicyCenter, Guidewire Jutro, Streamlit\nCloud & Tools: GCP, Docker, Git, GitHub, SQL, JWT, Spring Security, Swagger, CI/CD\nDatabases: PostgreSQL, MongoDB\nAI/ML & Concepts: RAG, Genetic Algorithms, DSA, OOP, Microservices"
+ },
+ {
+  "id": "resume-15",
+  "source": "resume",
+  "title": "Certifications",
+  "text": "- Guidewire Certified Associate Jutro Developer (Guidewire)\n- GitHub Copilot Fundamentals (GitHub)\n- Google Cloud Architect Specialization (Google Cloud)\n- Cloud Engineer Specialization (Google Cloud)\n- Cloud Security Specialization (Google Cloud)\n- Google Cloud Big Data and Machine Learning Fundamentals (Google Cloud)\n- Software Development Trainee (Aspiring Minds)\n- Basic Mountaineering Course (Atal Bihari Vajpayee Institute of Mountaineering and Allied Sports)\n- Pawzz Fundraising (Pawzz Foundation)"
+ },
+ {
+  "id": "resume-16",
+  "source": "resume",
+  "title": "Volunteering",
+  "text": "- Video Editor, YOUTH RED CROSS, KIIT (Oct 2022 – Present): Social services\n- Fundraiser & Video Editor, Pawzz Foundation (Aug 2023 – Sep 2023): Animal welfare; raised close to ₹1,500 for the organization.\n- Video Editor, Hamari Pahchan (Nov 2022 – Dec 2022): Social services"
+ },
+ {
+  "id": "resume-17",
+  "source": "resume",
+  "title": "Achievements",
+  "text": "- Led a 5-member team: Coordinated sprint planning, task allocation, code reviews, and delivery for the FarmAid Gladiator project at LTM.\n- Published Research — IJSREM: Authored \"Efficient Waste Collection and Filtration using IoT,\" demonstrating a 25% improvement in operational efficiency, published in an international peer-reviewed engineering journal (Jan 2023).\n- NGO Volunteer Leadership: Led fundraising and awareness campaigns reaching 5,000+ people, raising funds and coordinating 150+ animal rescues across Tare Zameen Foundation and Pawzz Foundation (Aug–Oct 2023)."
+ },
+ {
+  "id": "resume-18",
+  "source": "resume",
+  "title": "Education",
+  "text": "- B.Tech, CSE, Kalinga Institute of Industrial Technology (82.00% · 2021 – 2025)\n- Class XII, CBSE, O.P. Jindal School, Raigarh (90.16% · 2020)\n- Class X, CBSE, O.P. Jindal School, Raigarh (87.83% · 2018)"
+ },
+ {
+  "id": "notes-19",
+  "source": "notes",
+  "title": "Availability and what I'm looking for",
+  "text": "Shubham is currently a Software Engineer at LTM (LTIMindtree) in Pune and is open to new roles in full-stack and AI-focused engineering. The fastest way to reach him is email, listed on this site."
+ },
+ {
+  "id": "notes-20",
+  "source": "notes",
+  "title": "Working style and strengths",
+  "text": "He led and mentored a 5-member team on the FarmAid Gladiator project, handling sprint planning, task allocation, code reviews and delivery. He combines enterprise Java (Spring Boot, Guidewire PolicyCenter) with modern frontend (Angular, React, Next.js) and applied ML (RAG, genetic algorithms)."
+ },
+ {
+  "id": "notes-21",
+  "source": "notes",
+  "title": "Interests outside work",
+  "text": "Video editing (Adobe Premiere Pro, After Effects), volunteering with NGOs on fundraising and awareness campaigns, and mountaineering (completed a Basic Mountaineering Course)."
+ },
+ {
+  "id": "github-22",
+  "source": "github",
+  "title": "GitHub repo: memtomem (fork)",
+  "text": "memtomem is a fork of an open-source project (not originally authored by Shubham). Long-term memory for AI coding agents, kept as Markdown you own. Hybrid BM25 + vector search over your notes and code via MCP — one local store shared across Claude Code, Codex, Cursor, OpenCode, and more. Hook-free by default. Language: n/a. Last pushed: 2026-11-14. Live: https://memtomem.com. https://github.com/Shubhampatel001/memtomem"
+ },
+ {
+  "id": "github-23",
+  "source": "github",
+  "title": "GitHub repo: flisk (fork)",
+  "text": "flisk is a fork of an open-source project (not originally authored by Shubham). The local runtime your AI coding agent can start, check and fix. One command runs your multi-service app from a Compose file or plain commands, and an MCP server gives Claude Code, Cursor and Codex its health, logs and controls. MIT, no account. Language: n/a. Last pushed: 2026-11-12. Live: https://flisk.sh. https://github.com/Shubhampatel001/flisk"
+ },
+ {
+  "id": "github-24",
+  "source": "github",
+  "title": "GitHub repo: Shubhampatel001",
+  "text": "Shubhampatel001. No description. Language: n/a. Last pushed: 2026-10-04. https://github.com/Shubhampatel001/Shubhampatel001\nREADME: &nbsp; -- ⚡ Full-Stack · Frontend · Backend · AI · Cloud · Guidewire Digital --- 👋 Hey, I'm Shubham Full-Stack Software Engineer who enjoys building complete products — from polished interfaces and APIs to databases, authentication, cloud deployment, and AI-powered features. text Frontend → React • Next.js • Angular • Tailwind Backend → Java • Spring Boot • Node.js • FastAPI Data → PostgreSQL • MySQL • MongoDB AI → RAG • Embeddings • LLM APIs Cloud & DevOps → Google Cloud • Docker • GitHub Actions Guidewire → Jutro Digital • PolicyCenter I don't just write code. I like building things people can use. --- 🚀 Featured Projects 🔎 Perplexa AI Search × RAG × LLMs An AI-powered search and chat application that retrieves web content, finds relevant context using embeddings, and generates grounded responses. ↗ View Project 🌾 FarmAid Full-Stack Agricultural Platform A complete platform for farmers and loan officers with authentication, role-based access, applications, approvals, documents, testing, Docker and CI. ↗ View Project 🚗 EvoDrive Evolutionary Autonomous Driving A browser-based driving simulation where autonomous behaviour evolves through genetic algorithms, pathfinding and collision detection. ↗ View Project 🐦 Flappy Bird × NEAT Teaching an AI to Play A Flappy Bird implementation where a neural network evolves through neuroevolution and fitness-based optimization. ↗ View P"
+ },
+ {
+  "id": "github-25",
+  "source": "github",
+  "title": "GitHub repo: farmAid",
+  "text": "farmAid. FarmAid is a web application that helps farmers find agricultural loan schemes, apply online and track their applications, while loan officers (admins) manage the schemes and approve or reject applications. Language: Java. Last pushed: 2026-10-04. Live: https://farmaid-onhl.onrender.com/. https://github.com/Shubhampatel001/farmAid\nREADME: 🌾 FarmAid ![CI](https://github.com/Shubhampatel001/farmAid/actions/workflows/ci.yml) ![License: MIT](LICENSE) FarmAid is a web application that helps farmers find agricultural loan schemes, apply online and track their applications , while loan officers (admins) manage the schemes and approve or reject applications. 🌐 Live demo: https://farmaid-onhl.onrender.com Log in with the demo accounts listed below. The demo runs on a free server that sleeps when unused, so the first visit can take about a minute to load. --- 🎯 Try it in 3 steps (Demo mode, no technical setup) Demo mode runs the complete application on your computer with sample data and ready-made accounts . You don't need to install a database or change any settings. 1. Install Docker Desktop Download it from https://www.docker.com/products/docker-desktop/ , install it (restart your computer if asked), then open it and wait until it says \"Engine running\" . 2. Get FarmAid On the GitHub page, click the green Code button → Download ZIP , then extract (unzip) it, for example to your Desktop. Using Git? git clone https://github.com/Shubhampatel001/farmAid.git 3. Start it Your computer What to do --- --- Windows Open the extracted folder and double-click start-demo.cmd macOS / Linux Open a terminal in the folder and run bash start-demo.sh The first start takes a few minutes while everything is prepared; later starts take se"
+ },
+ {
+  "id": "github-26",
+  "source": "github",
+  "title": "GitHub repo: atelier-store",
+  "text": "atelier-store. No description. Language: TypeScript. Last pushed: 2026-10-03. https://github.com/Shubhampatel001/atelier-store\nREADME: Atelier Store eCommerce app foundation built on: - Next.js (App Router, TypeScript) - Tailwind CSS v4 - Better Auth for authentication - Drizzle ORM with Neon serverless Postgres Getting started 1. Install dependencies: bash npm install 2. Copy the env template and fill in your values: bash cp .env.example .env.local - DATABASE URL — Neon connection string - BETTER AUTH SECRET — generate with npx auth@latest secret 3. Start the dev server: bash npm run dev Better Auth is mounted at /api/auth/ . It returns errors until its tables exist (see below). Project structure drizzle.config.ts Drizzle Kit config (reads .env.local) src/app/api/auth/[...all]/ Better Auth route handler src/db/index.ts Drizzle client (Neon HTTP driver) src/db/schema/ Drizzle table definitions src/lib/auth.ts Better Auth server instance src/lib/auth-client.ts Better Auth React client Scripts Script Description ----------------------- ---------------------------------------------------- npm run dev Start the dev server npm run build Production build npm run lint Run ESLint npm run typecheck Type-check with tsc npm run db:generate Generate SQL migrations from the schema npm run db:migrate Apply migrations npm run db:push Push schema directly to the database (prototyping) npm run db:studio Open Drizzle Studio npm run auth:generate Generate Better Auth tables into src/db/schema/auth.ts Better Auth's tables are not"
+ },
+ {
+  "id": "github-27",
+  "source": "github",
+  "title": "GitHub repo: anisha-naman-wedding",
+  "text": "anisha-naman-wedding. Digital Invitation card Language: JavaScript. Last pushed: 2026-03-14. Live: https://anisha-naman-wedding.vercel.app. https://github.com/Shubhampatel001/anisha-naman-wedding\nREADME: React + Vite This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules. Currently, two official plugins are available: - @vitejs/plugin-react uses Babel (or oxc when used in rolldown-vite) for Fast Refresh - @vitejs/plugin-react-swc uses SWC for Fast Refresh React Compiler The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see this documentation. Expanding the ESLint configuration If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the TS template for information on how to integrate TypeScript and typescript-eslint in your project."
+ },
+ {
+  "id": "github-28",
+  "source": "github",
+  "title": "GitHub repo: skills-getting-started-with-github-copilot",
+  "text": "skills-getting-started-with-github-copilot. Exercise: Get started using GitHub Copilot Language: Python. Last pushed: 2025-12-18. https://github.com/Shubhampatel001/skills-getting-started-with-github-copilot\nREADME: 🎉 Congratulations Shubhampatel001! 🎉 🌟 You've successfully completed the exercise! 🌟 🚀 Share Your Success! Show off your new skills and inspire others! 🎯 What's Next? Keep the momentum going! ![](https://github.com/Shubhampatel001/skills-getting-started-with-github-copilot/issues/1) ![GitHub Skills](https://learn.github.com/skills) There's no better way to learn than building things! 🚀 --- &copy; 2025 GitHub &bull; Code of Conduct &bull; MIT License"
+ },
+ {
+  "id": "github-29",
+  "source": "github",
+  "title": "GitHub repo: Perplexa (fork)",
+  "text": "Perplexa is a fork of an open-source project (not originally authored by Shubham). A smart web-searching AI that transforms your questions into accurate, reliable answers backed by real-time information. Language: Jupyter Notebook. Last pushed: 2025-04-12. Live: https://perplexa.streamlit.app/. https://github.com/Shubhampatel001/Perplexa"
+ },
+ {
+  "id": "github-30",
+  "source": "github",
+  "title": "GitHub repo: My-Portfolio",
+  "text": "My-Portfolio. No description. Language: n/a. Last pushed: 2025-01-02. https://github.com/Shubhampatel001/My-Portfolio\nREADME: My-Portfolio"
+ },
+ {
+  "id": "github-31",
+  "source": "github",
+  "title": "GitHub repo: EvoDrive-Genetic-Algorithm-for-Autonomous-Driving",
+  "text": "EvoDrive-Genetic-Algorithm-for-Autonomous-Driving. EvoDrive is a project that combines genetic algorithms with advanced simulation techniques to create a pseudo-3D autonomous driving environment. Language: JavaScript. Last pushed: 2024-12-09. Live: https://shubhampatel001.github.io/EvoDrive-Genetic-Algorithm-for-Autonomous-Driving/. https://github.com/Shubhampatel001/EvoDrive-Genetic-Algorithm-for-Autonomous-Driving\nREADME: EvoDrive - Genetic Algorithm for Autonomous Driving 🚗💡 EvoDrive is a project that combines genetic algorithms with advanced simulation techniques to create a pseudo-3D autonomous driving environment. Initially inspired by NEAT (NeuroEvolution of Augmenting Topologies), our project has evolved into a broader implementation of genetic algorithms for self-driving car simulations. This project demonstrates the use of AI to handle tasks such as obstacle avoidance, shortest path navigation, and dynamic world interaction. --- Table of Contents - Project Overview - Features - Technologies Used - How It Works - Installation - Challenges Faced - Future Plans --- Project Overview EvoDrive aims to simulate the following features in a dynamic environment: 1. Autonomous driving using genetic algorithms for evolutionary learning. 2. Handling stationary and moving obstacles in a realistic road setup. 3. Building a pseudo-3D environment with interactive elements such as traffic lights and road signs. 4. Dynamic route selection and shortest path computation using algorithms like Dijkstra’s. 5. Real-time visualization of neural network decisions. --- Features Core Functionalities - Genetic Algorithm for AI Evolution : Mutation-based learning for car decision-making. - Obstacle Detection and Avoidance : Sensors simulate real-world proximity detection. - Shortest Path Navigation : Implementation"
+ },
+ {
+  "id": "github-32",
+  "source": "github",
+  "title": "GitHub repo: Flappy-Bird-With-NEAT-Algorithm",
+  "text": "Flappy-Bird-With-NEAT-Algorithm. Contains manual gameplay and AI gameplay versions of Flappy Bird. Language: Jupyter Notebook. Last pushed: 2024-11-22. https://github.com/Shubhampatel001/Flappy-Bird-With-NEAT-Algorithm\nREADME: Optimization of Flappy Bird using NEAT This project implements the classic Flappy Bird game using the NEAT (NeuroEvolution of Augmenting Topologies) algorithm, allowing an AI to learn to play the game autonomously. NEAT is a genetic algorithm that evolves neural networks to perform tasks, in this case, playing Flappy Bird. Clone the repository to your local machine: git git clone https://github.com/Shubhampatel001/Flappy-Bird-With-NEAT-Algorithm Install the required Python modules using pip: python pip install -r requirements.txt This command will install the necessary dependencies, including neat-python and pygame. Usage To play Flappy Bird manually: Open the \"Base Model Flappy Bird.ipynb\" notebook. Execute the cells to control the bird and navigate through the pipes. To watch the AI agent train itself: Open the \"NEAT Algo Flappy Bird.ipynb\" notebook. Run the cells to train the NEAT algorithm and observe the AI gameplay. To watch the AI agent play: Run python python test.py Notes Ensure that you have Python and Jupyter Notebook installed on your system before running the notebooks. Configuration The feedforward.txt file contains the NEAT configuration parameters. You can adjust these parameters to change the behavior of the NEAT algorithm and experiment with different settings to improve the AI's performance. Additional Folders Documentations: Contains abstracts, references, a"
+ },
+ {
+  "id": "github-33",
+  "source": "github",
+  "title": "GitHub repo: Legal-Docs",
+  "text": "Legal-Docs. Legal Docs is a web application designed to streamline the management and accessibility of legal documents. Language: CSS. Last pushed: 2024-10-08. Live: https://shubhampatel001.github.io/Legal-Docs/. https://github.com/Shubhampatel001/Legal-Docs\nREADME: Legal Docs Legal Docs is a web application designed to streamline the management and accessibility of legal documents. This project serves as a comprehensive platform for users to view, create, and manage legal documents with ease. Features - User-friendly Interface: An intuitive design that allows for efficient navigation and interaction. - Secure Storage: Safely store and retrieve legal documents with ease. - Responsive Design: Optimized viewing experience across desktop, tablet, and mobile devices. - AI ChatBot Integration: Quick assistance through a built-in chat functionality powered by Voiceflow. Technologies Used - Frontend: HTML, CSS, JavaScript - AI ChatBot Integration: Voiceflow for chat functionalities Getting Started To get started with the Legal Docs project, clone this repository and open the index.html file in your browser. You can also explore the codebase for a deeper understanding of the implementation. Contributing Contributions are welcome! If you have suggestions or improvements, please fork the repository and submit a pull request. Acknowledgments - Voiceflow for providing the chat integration feature. Feel free to explore, contribute, and provide feedback on the Legal Docs project!"
+ },
+ {
+  "id": "github-34",
+  "source": "github",
+  "title": "GitHub repo: dlt (fork)",
+  "text": "dlt is a fork of an open-source project (not originally authored by Shubham). data load tool (dlt) is an open source Python library that makes data loading easy 🛠️  Language: n/a. Last pushed: 2024-10-01. Live: https://dlthub.com/docs. https://github.com/Shubhampatel001/dlt"
+ },
+ {
+  "id": "github-35",
+  "source": "github",
+  "title": "GitHub repo: Dice-Game",
+  "text": "Dice-Game. Created an interactive dice game (HTML, CSS, JavaScript) with single-player selection. Generates random numbers for two dice and displays the winner based on the higher roll. Language: HTML. Last pushed: 2024-03-13. Live: https://shubhampatel001.github.io/Dice-Game/. https://github.com/Shubhampatel001/Dice-Game\nREADME: Dice-Game Roll the Dice! (HTML/CSS/JavaScript) Feeling lucky? Test your fate with this interactive dice game in your browser! To play the game \"Refresh\" your browser. Challenge the odds! Pick your opponent (it's just you... for now ). Click the button and watch the dice roll! The die (or should we say dice?) with the higher number wins! Feeling like a coding whiz? ‍‍ The code is well-structured and uses HTML, CSS, and JavaScript. Feel free to tinker and add features like multiple players, fancy animations, or even sound effects! Let the games begin! https://shubhampatel001.github.io/Dice-Game/"
+ },
+ {
+  "id": "github-36",
+  "source": "github",
+  "title": "GitHub repo: Drum-Kit",
+  "text": "Drum-Kit. Developed a web-based drum kit application that simulates sounds using keyboard input or touch interaction. Language: JavaScript. Last pushed: 2024-03-07. Live: https://shubhampatel001.github.io/Drum-Kit/. https://github.com/Shubhampatel001/Drum-Kit\nREADME: Drum-Kit Drum Up Some Fun! (HTML/CSS/JS) Play a virtual drum kit right in your browser! No fancy equipment needed, just tap the pads or smash your keyboard ⌨️ to unleash your inner rockstar here https://shubhampatel001.github.io/Drum-Kit/ Features: Play iconic percussion sounds (customizable!) ⌨️ Intuitive keyboard mapping for easy drumming Touchscreen friendly for a more immersive experience ️ Easy-to-understand code for customization Ready to jam? Clone the repo, open index.html, and start drumming! Feeling creative? Explore the code and make it your own! ✨"
+ },
+ {
+  "id": "github-37",
+  "source": "github",
+  "title": "GitHub repo: Simon-Game-Challenge",
+  "text": "Simon-Game-Challenge. Simon is a memory game where some buttons shows a sequence of lights and sounds. You repeat the sequence by pressing corresponding buttons. The game gets harder as the sequence lengthens, testing your memory and coordination. Language: JavaScript. Last pushed: 2024-03-07. Live: https://shubhampatel001.github.io/Simon-Game-Challenge/. https://github.com/Shubhampatel001/Simon-Game-Challenge\nREADME: Simon-Game-Challenge Simon Game (HTML, CSS, JavaScript) This repository contains a web-based implementation of the classic Simon game. Players test their memory and reflexes by replicating a sequence of colored lights and sounds. The game progressively increases in difficulty as the sequence lengthens. Features: Authentic gameplay: Mimics the classic Simon game experience. Visually appealing UI: Clean and user-friendly interface. Interactive sound effects: Each color button has a corresponding sound. Customizable difficulty: Challenge yourself with increasing sequence lengths. TRY the Game here - https://shubhampatel001.github.io/Simon-Game-Challenge/"
+ },
+ {
+  "id": "github-38",
+  "source": "github",
+  "title": "GitHub repo: Resourceify (fork)",
+  "text": "Resourceify is a fork of an open-source project (not originally authored by Shubham). No description. Language: Jupyter Notebook. Last pushed: 2023-10-30. Live: https://data-science-community-srm.github.io/Resourceify/. https://github.com/Shubhampatel001/Resourceify"
+ },
+ {
+  "id": "github-39",
+  "source": "github",
+  "title": "GitHub repo: HactoberFest2023 (fork)",
+  "text": "HactoberFest2023 is a fork of an open-source project (not originally authored by Shubham). This is for HacktoberFest2023 Language: C++. Last pushed: 2023-10-30. https://github.com/Shubhampatel001/HactoberFest2023"
+ },
+ {
+  "id": "github-40",
+  "source": "github",
+  "title": "GitHub repo: tindog",
+  "text": "tindog. A dating Website for Dogs Language: HTML. Last pushed: 2020-07-28. Live: https://shubhampatel001.github.io/tindog. https://github.com/Shubhampatel001/tindog\nREADME: tindog"
+ },
+ {
+  "id": "github-41",
+  "source": "github",
+  "title": "GitHub repo: cv",
+  "text": "cv. This is my First CV ( Sample_) Language: HTML. Last pushed: 2020-06-23. Live: https://shubhampatel001.github.io/cv. https://github.com/Shubhampatel001/cv\nREADME: cv"
+ },
+ {
+  "id": "github-42",
+  "source": "github",
+  "title": "GitHub repo: site",
+  "text": "site. This is my First Website Language: HTML. Last pushed: 2020-06-22. Live: https://shubhampatel001.github.io/site/. https://github.com/Shubhampatel001/site\nREADME: site"
+ }
+]
