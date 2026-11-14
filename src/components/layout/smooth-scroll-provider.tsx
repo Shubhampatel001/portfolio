@@ -17,13 +17,16 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     });
     lenisRef.current = lenis;
 
+    let frameId = 0;
+
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      frameId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    frameId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(frameId);
       lenis.destroy();
       lenisRef.current = null;
     };

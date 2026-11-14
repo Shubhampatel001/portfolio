@@ -26,14 +26,14 @@ export function SectionHeading({
     >
       <div
         className={cn(
-          "mb-3 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-accent)]",
+          "mb-3 flex items-center gap-2 font-mono text-xs text-[var(--color-accent)]",
           align === "center" && "justify-center"
         )}
       >
-        <span className="h-px w-6 bg-[var(--color-accent)]" />
+        <span className="h-2 w-2 rounded-full bg-[var(--color-lime)] ring-1 ring-[var(--color-text)]" />
         {eyebrow}
       </div>
-      <h2 className="font-display text-3xl font-medium tracking-tight text-[var(--color-text)] sm:text-4xl">
+      <h2 className="font-display text-4xl font-semibold tracking-tight text-[var(--color-text)] sm:text-5xl">
         {title}
       </h2>
       {description && (

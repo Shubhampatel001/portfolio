@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BadgeCheck } from "lucide-react";
+import { ArrowUpRight, BadgeCheck } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { certifications } from "@/data/resume";
 
@@ -13,13 +13,16 @@ export function Certifications() {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, i) => (
-            <motion.div
+            <motion.a
               key={cert.name}
+              href={cert.url}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="group relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-300 hover:border-[var(--color-accent)]/50"
+              className="group relative flex min-h-44 flex-col overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]/50"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-accent-soft)] text-[var(--color-accent)]">
                 <BadgeCheck size={20} />
@@ -28,7 +31,10 @@ export function Certifications() {
                 {cert.name}
               </h3>
               <p className="font-mono text-xs text-[var(--color-text-faint)]">{cert.issuer}</p>
-            </motion.div>
+              <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-xs font-medium text-[var(--color-accent)]">
+                View credential <ArrowUpRight size={13} />
+              </span>
+            </motion.a>
           ))}
         </div>
       </div>

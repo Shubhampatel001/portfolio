@@ -1,147 +1,89 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/brand-icons";
-import { Button } from "@/components/ui/button";
 import { profile } from "@/data/resume";
 
-const ROLES = ["Full-Stack Engineer", "Guidewire PolicyCenter", "GenAI / RAG Systems"];
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pt-28 pb-16"
-    >
-      {/* Ambient gradient background */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-[-10%] h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-[var(--color-accent)]/20 blur-[140px]" />
-        <div className="absolute right-[10%] top-[30%] h-[380px] w-[380px] rounded-full bg-[var(--color-violet)]/10 blur-[120px]" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(var(--color-text) 1px, transparent 1px), linear-gradient(90deg, var(--color-text) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-      </div>
+    <section id="hero" className="relative overflow-hidden px-6 pt-32 pb-20 sm:pt-40">
+      <div
+        aria-hidden
+        className="dither dither-fade pointer-events-none absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full opacity-60 sm:h-[560px] sm:w-[560px]"
+      />
 
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="relative mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-1.5 font-mono text-xs text-[var(--color-text-muted)]"
+          transition={{ duration: 0.5, ease }}
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-[var(--color-text)] bg-[var(--color-surface)] px-4 py-1.5 font-mono text-xs text-[var(--color-text)]"
         >
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
           </span>
-          Open to new roles &middot; {profile.location}
+          open to new roles &middot; {profile.location.toLowerCase()}
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display max-w-4xl text-[13vw] font-medium leading-[0.98] tracking-tight text-[var(--color-text)] sm:text-6xl md:text-7xl"
+          transition={{ duration: 0.7, delay: 0.08, ease }}
+          className="font-display max-w-4xl text-[14vw] font-semibold leading-[0.92] tracking-tight text-[var(--color-text)] sm:text-7xl md:text-8xl"
         >
-          {profile.name.split(" ")[0]}{" "}
-          <span className="text-gradient">{profile.name.split(" ")[1]}</span>
+          i build software that{" "}
+          <span className="relative inline-block text-[var(--color-accent)]">
+            ships
+            <svg aria-hidden viewBox="0 0 200 12" className="absolute -bottom-1 left-0 w-full" preserveAspectRatio="none">
+              <path d="M2 8 Q 50 0 100 6 T 198 5" fill="none" stroke="var(--color-lime)" strokeWidth="5" strokeLinecap="round" />
+            </svg>
+          </span>
+          .
         </motion.h1>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.22 }}
-          className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-sm text-[var(--color-text-muted)] sm:text-base"
-        >
-          {ROLES.map((role, i) => (
-            <span key={role} className="flex items-center gap-3">
-              <span className="text-[var(--color-text)]">{role}</span>
-              {i < ROLES.length - 1 && <span className="text-[var(--color-accent)]">/</span>}
-            </span>
-          ))}
-        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.32 }}
-          className="mt-8 max-w-xl text-[15px] leading-relaxed text-[var(--color-text-muted)] sm:text-base"
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mt-8 max-w-xl text-base leading-relaxed text-[var(--color-text-muted)] sm:text-lg"
         >
-          I build full-stack, production-grade software — from Guidewire PolicyCenter
-          insurance workflows to GenAI-powered retrieval systems. Currently at{" "}
-          <span className="text-[var(--color-text)]">LTM</span>, shipping with Spring Boot,
-          Angular, React, and a growing focus on applied ML.
+          I&apos;m <span className="text-[var(--color-text)]">{profile.name}</span>, a software
+          engineer at <span className="text-[var(--color-text)]">LTM</span>. Full-stack with Spring
+          Boot, Angular and React, Guidewire PolicyCenter for insurance, and a growing habit of
+          building GenAI / RAG systems.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.42 }}
-          className="mt-10 flex flex-wrap items-center gap-4"
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="mt-10 flex flex-wrap items-center gap-3"
         >
-          <Button
-            onClick={() =>
-              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
-            }
+          <a
+            href="#contact"
+            className="inline-flex h-11 items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 hover:bg-[var(--color-accent-hover)]"
           >
-            View Projects <ArrowUpRight size={16} />
-          </Button>
-          <Button variant="outline" asChild>
-            <a href="/resume.pdf" download>
-              Download Resume
-            </a>
-          </Button>
-
-          <div className="ml-2 flex items-center gap-1">
-            <a
-              href={profile.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="rounded-full p-2.5 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-text)]"
-            >
-              <GithubIcon size={18} />
-            </a>
-            <a
-              href={profile.links.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="rounded-full p-2.5 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-text)]"
-            >
-              <LinkedinIcon size={18} />
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="Email"
-              className="rounded-full p-2.5 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-text)]"
-            >
-              <Mail size={18} />
-            </a>
-          </div>
+            get in touch <ArrowUpRight size={16} />
+          </a>
+          <a
+            href="/resume.pdf"
+            download
+            className="inline-flex h-11 items-center rounded-full border border-[var(--color-text)] px-6 text-sm font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-text)] hover:text-[var(--color-bg)]"
+          >
+            resume
+          </a>
+          <a href={profile.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="rounded-full p-2.5 text-[var(--color-text)] hover:bg-[var(--color-surface-hover)]">
+            <GithubIcon size={20} />
+          </a>
+          <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="rounded-full p-2.5 text-[var(--color-text)] hover:bg-[var(--color-surface-hover)]">
+            <LinkedinIcon size={20} />
+          </a>
         </motion.div>
       </div>
-
-      <motion.button
-        onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        aria-label="Scroll to About section"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[var(--color-text-faint)] transition-colors hover:text-[var(--color-text)]"
-      >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ArrowDown size={18} />
-        </motion.div>
-      </motion.button>
     </section>
   );
 }

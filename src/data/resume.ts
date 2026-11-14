@@ -13,7 +13,7 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/shubhampatel001/",
   },
   summary:
-    "Software Engineer at LTM specializing in full-stack and Guidewire PolicyCenter development within the P&C insurance domain, with hands-on expertise in Spring Boot, Angular, React, and REST APIs. Certified in Guidewire Jutro and Google Cloud; led a 5-member team and scored 90%+ across all assessed milestones.",
+    "Software Engineer at LTIMindtree specializing in full-stack and Guidewire PolicyCenter development within the P&C insurance domain, with hands-on expertise in Java, Spring Boot, Angular, React, Next.js, and REST APIs. I build scalable applications, improve user experiences, and collaborate across teams to turn business requirements into reliable software.",
   currentFocus:
     "Full-stack engineering across Spring Boot, Angular and React, with a growing focus on GenAI/RAG systems — building retrieval pipelines, vector search, and applied ML on top of production-grade backends.",
   stats: [
@@ -47,6 +47,26 @@ export const experience: ExperienceEntry[] = [
     tech: ["Spring Boot", "Angular", "React", "Node.js", "PostgreSQL", "Guidewire", "Spring Security", "Swagger"],
   },
   {
+    company: "LTIMindtree, Bhubaneswar",
+    role: "Graduate Engineering Trainee",
+    duration: "Jun 2025 – Aug 2025",
+    points: [
+      "Completed Java full-stack training with hands-on work in Core Java, Spring Boot, and Angular.",
+      "Led a project team while strengthening technical, communication, and collaboration skills.",
+    ],
+    tech: ["Core Java", "Spring Boot", "Angular", "Team Leadership"],
+  },
+  {
+    company: "AnsrCoach",
+    role: "Video Editor",
+    duration: "Nov 2022 – Feb 2023",
+    points: [
+      "Edited 15+ professional videos using Adobe Premiere Pro and After Effects, delivering every project ahead of deadline.",
+      "Introduced motion-graphics techniques that streamlined the editing process by 25% and increased client satisfaction by 20%.",
+    ],
+    tech: ["Adobe Premiere Pro", "After Effects", "Motion Graphics"],
+  },
+  {
     company: "Jindal Steel & Power Ltd., Raigarh",
     role: "Intern",
     duration: "Jun 2022 – Aug 2022",
@@ -70,9 +90,88 @@ export type Project = {
   demo?: string;
   featured: boolean;
   hasPlayableDemo?: boolean;
+  previewImage?: string;
+  category: "AI/ML" | "Full Stack" | "Games" | "Web";
 };
 
 export const projects: Project[] = [
+  {
+    slug: "dice-game",
+    name: "Dice Game",
+    tagline: "Interactive two-dice JavaScript game",
+    duration: "Mar 2024",
+    problem:
+      "Create a lightweight browser game that gives a clear outcome from a random two-dice roll.",
+    solution:
+      "Built an interactive single-player game that generates two random dice values and displays the winner based on the higher roll.",
+    learnings: [
+      "Randomized state needs immediate, easy-to-read visual feedback",
+      "Simple interaction design can make a compact browser game feel responsive",
+    ],
+    tech: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/Shubhampatel001/Dice-Game",
+    demo: "https://shubhampatel001.github.io/Dice-Game/",
+    featured: false,
+    previewImage: "/projects/dice-game.png",
+    category: "Games",
+  },
+  {
+    slug: "drum-kit",
+    name: "Drum Kit",
+    tagline: "Keyboard and touch-controlled web instrument",
+    duration: "Mar 2024",
+    problem:
+      "Make drum sounds accessible through both physical keyboard input and touch interaction in the browser.",
+    solution:
+      "Developed a web-based drum kit that maps keyboard and touch interactions to simulated drum sounds.",
+    learnings: [
+      "Supporting multiple input methods makes interactive experiences more accessible",
+      "Immediate audio and visual response is essential for musical interfaces",
+    ],
+    tech: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/Shubhampatel001/Drum-Kit",
+    demo: "https://shubhampatel001.github.io/Drum-Kit/",
+    featured: false,
+    previewImage: "/projects/drum-kit.png",
+    category: "Games",
+  },
+  {
+    slug: "simon-game-challenge",
+    name: "Simon Game Challenge",
+    tagline: "Progressive memory game with lights and sounds",
+    duration: "Mar 2024",
+    problem:
+      "Build a game that tests memory and coordination by asking players to reproduce an increasingly complex sequence.",
+    solution:
+      "Created a Simon-style game that presents a sequence of lights and sounds for players to repeat, increasing the challenge with every round.",
+    learnings: [
+      "Game difficulty can scale naturally through progressive sequence length",
+      "Clear state transitions help players understand interactive challenges",
+    ],
+    tech: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/Shubhampatel001/Simon-Game-Challenge",
+    demo: "https://shubhampatel001.github.io/Simon-Game-Challenge/",
+    featured: false,
+    category: "Games",
+  },
+  {
+    slug: "legal-docs",
+    name: "Legal Docs",
+    tagline: "Legal-document management web application",
+    duration: "Jan 2023",
+    problem:
+      "Legal documents need to be easy to access and manage within a single, clear workflow.",
+    solution:
+      "Built a web application that lets users view, create, and manage legal documents from one platform.",
+    learnings: [
+      "Document workflows work best when creating, viewing, and managing records are easy to find",
+      "Clear information architecture is essential for document-heavy applications",
+    ],
+    tech: ["Web Application", "Document Management"],
+    featured: true,
+    previewImage: "/projects/legal-docs.png",
+    category: "Full Stack",
+  },
   {
     slug: "perplexa-chat",
     name: "Perplexa Chat",
@@ -89,7 +188,10 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "Streamlit", "MongoDB", "Vector Embeddings", "RAG", "GenAI APIs"],
     github: "https://github.com/Shubhampatel001/Perplexa",
+    demo: "https://perplexa.streamlit.app/",
     featured: true,
+    previewImage: "/projects/perplexa-process.jpg",
+    category: "AI/ML",
   },
   {
     slug: "evodrive",
@@ -107,7 +209,10 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "Genetic Algorithms", "Dijkstra's Algorithm", "Simulation"],
     github: "https://github.com/Shubhampatel001/EvoDrive-Genetic-Algorithm-for-Autonomous-Driving",
+    demo: "https://shubhampatel001.github.io/EvoDrive-Genetic-Algorithm-for-Autonomous-Driving/",
     featured: true,
+    previewImage: "/projects/evodrive-map.png",
+    category: "AI/ML",
   },
   {
     slug: "flappy-bird-neat",
@@ -127,13 +232,15 @@ export const projects: Project[] = [
     github: "https://github.com/Shubhampatel001/Flappy-Bird-With-NEAT-Algorithm",
     featured: true,
     hasPlayableDemo: true,
+    previewImage: "/projects/flappy-neat.png",
+    category: "AI/ML",
   },
 ];
 
 export const skills = {
-  Languages: ["Java", "Gosu", "Python", "C++", "JavaScript"],
-  Frameworks: ["Spring Boot", "Angular", "React", "Node.js", "Guidewire PolicyCenter", "Guidewire Jutro", "Streamlit"],
-  "Cloud & Tools": ["GCP", "Git", "SQL", "JWT", "Spring Security", "Swagger"],
+  Languages: ["Java", "Gosu", "Python", "C++", "JavaScript", "TypeScript"],
+  Frameworks: ["Spring Boot", "Angular", "React", "Next.js", "Node.js", "Guidewire PolicyCenter", "Guidewire Jutro", "Streamlit"],
+  "Cloud & Tools": ["GCP", "Docker", "Git", "GitHub", "SQL", "JWT", "Spring Security", "Swagger", "CI/CD"],
   Databases: ["PostgreSQL", "MongoDB"],
   "AI/ML & Concepts": ["RAG", "Genetic Algorithms", "DSA", "OOP", "Microservices"],
 };
@@ -141,14 +248,47 @@ export const skills = {
 export type Certification = {
   name: string;
   issuer: string;
+  url: string;
 };
 
 export const certifications: Certification[] = [
-  { name: "Guidewire Certified Associate Jutro Developer", issuer: "Guidewire" },
-  { name: "GitHub Copilot Fundamentals", issuer: "GitHub" },
-  { name: "Google Cloud Architect Specialization", issuer: "Google Cloud" },
-  { name: "Cloud Engineer Specialization", issuer: "Google Cloud" },
-  { name: "Cloud Security Specialization", issuer: "Google Cloud" },
+  { name: "Guidewire Certified Associate Jutro Developer", issuer: "Guidewire", url: "https://www.linkedin.com/in/shubhampatel001/details/certifications/" },
+  { name: "GitHub Copilot Fundamentals", issuer: "GitHub", url: "https://www.linkedin.com/in/shubhampatel001/details/certifications/" },
+  { name: "Google Cloud Architect Specialization", issuer: "Google Cloud", url: "https://www.coursera.org/verify/X3MQTD3RZTNA" },
+  { name: "Cloud Engineer Specialization", issuer: "Google Cloud", url: "https://www.coursera.org/verify/DU7B5CD2RFJN" },
+  { name: "Cloud Security Specialization", issuer: "Google Cloud", url: "https://www.coursera.org/verify/TACMFEB7JYGR" },
+  { name: "Google Cloud Big Data and Machine Learning Fundamentals", issuer: "Google Cloud", url: "https://www.coursera.org/verify/BEX3JLJTZNSF" },
+  { name: "Software Development Trainee", issuer: "Aspiring Minds", url: "https://www.linkedin.com/in/shubhampatel001/details/certifications/" },
+  { name: "Basic Mountaineering Course", issuer: "Atal Bihari Vajpayee Institute of Mountaineering and Allied Sports", url: "https://www.linkedin.com/in/shubhampatel001/details/certifications/" },
+  { name: "Pawzz Fundraising", issuer: "Pawzz Foundation", url: "https://www.linkedin.com/in/shubhampatel001/details/certifications/" },
+];
+
+export type VolunteerEntry = {
+  organization: string;
+  role: string;
+  duration: string;
+  focus: string;
+};
+
+export const volunteerExperience: VolunteerEntry[] = [
+  {
+    organization: "YOUTH RED CROSS, KIIT",
+    role: "Video Editor",
+    duration: "Oct 2022 – Present",
+    focus: "Social services",
+  },
+  {
+    organization: "Pawzz Foundation",
+    role: "Fundraiser & Video Editor",
+    duration: "Aug 2023 – Sep 2023",
+    focus: "Animal welfare; raised close to ₹1,500 for the organization.",
+  },
+  {
+    organization: "Hamari Pahchan",
+    role: "Video Editor",
+    duration: "Nov 2022 – Dec 2022",
+    focus: "Social services",
+  },
 ];
 
 export type Achievement = {

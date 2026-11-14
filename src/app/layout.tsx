@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { spaceGrotesk, inter, jetbrainsMono } from "@/lib/fonts";
+import { bricolage, inter, jetbrainsMono } from "@/lib/fonts";
 import { profile } from "@/data/resume";
 import "./globals.css";
+
+const themeScript = `try{var t=localStorage.getItem("theme");if(!t){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){}`;
 
 const siteUrl = "https://shubhampatel.dev";
 
@@ -30,13 +32,11 @@ export const metadata: Metadata = {
     title: `${profile.name} — ${profile.role}`,
     description: profile.summary,
     siteName: `${profile.name} Portfolio`,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: profile.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${profile.name} — ${profile.role}`,
     description: profile.summary,
-    images: ["/og-image.png"],
   },
   icons: {
     icon: "/favicon.svg",
@@ -53,8 +53,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="grain">{children}</body>
+    <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

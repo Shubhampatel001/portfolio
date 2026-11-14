@@ -8,6 +8,8 @@ import { Projects } from "@/components/sections/projects";
 import { Skills } from "@/components/sections/skills";
 import { Certifications } from "@/components/sections/certifications";
 import { Achievements } from "@/components/sections/achievements";
+import { Volunteering } from "@/components/sections/volunteering";
+import { Mascot } from "@/components/ui/mascot";
 import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
@@ -16,15 +18,17 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Experience />
         <Projects />
+        <Experience />
+        <About />
         <Skills />
         <Certifications />
         <Achievements />
+        <Volunteering />
         <Contact />
       </main>
       <Footer />
+      <Mascot />
     </SmoothScrollProvider>
   );
 }

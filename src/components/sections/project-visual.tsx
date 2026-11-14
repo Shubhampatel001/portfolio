@@ -123,7 +123,75 @@ function NeatVisual() {
   );
 }
 
+function LegalDocsVisual() {
+  return (
+    <svg viewBox="0 0 320 200" className="h-full w-full">
+      {[{ x: 82, y: 45 }, { x: 125, y: 70 }, { x: 168, y: 45 }].map((document, index) => (
+        <motion.g
+          key={index}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.12 }}
+        >
+          <rect x={document.x} y={document.y} width="70" height="92" rx="7" fill="var(--color-surface-hover)" stroke="var(--color-border-hover)" />
+          <rect x={document.x + 14} y={document.y + 20} width="42" height="3" rx="1.5" fill="var(--color-accent)" />
+          <rect x={document.x + 14} y={document.y + 36} width="38" height="2" rx="1" fill="var(--color-text-faint)" />
+          <rect x={document.x + 14} y={document.y + 46} width="31" height="2" rx="1" fill="var(--color-text-faint)" />
+          <rect x={document.x + 14} y={document.y + 56} width="36" height="2" rx="1" fill="var(--color-text-faint)" />
+        </motion.g>
+      ))}
+    </svg>
+  );
+}
+
+function DiceVisual() {
+  return (
+    <svg viewBox="0 0 320 200" className="h-full w-full">
+      {[{ x: 66, y: 56, dots: [[90, 80], [112, 80], [101, 100], [90, 120], [112, 120]] }, { x: 176, y: 56, dots: [[199, 80], [221, 80], [199, 120], [221, 120]] }].map((die, index) => (
+        <motion.g key={index} initial={{ opacity: 0, rotate: index ? 10 : -10 }} whileInView={{ opacity: 1, rotate: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.12, type: "spring" }}>
+          <rect x={die.x} y={die.y} width="70" height="88" rx="12" fill="var(--color-surface-hover)" stroke="var(--color-accent)" strokeWidth="1.5" />
+          {die.dots.map(([cx, cy], dotIndex) => <circle key={dotIndex} cx={cx} cy={cy} r="4" fill="var(--color-accent)" />)}
+        </motion.g>
+      ))}
+    </svg>
+  );
+}
+
+function DrumVisual() {
+  return (
+    <svg viewBox="0 0 320 200" className="h-full w-full">
+      {[70, 160, 250].map((cx, index) => (
+        <motion.g key={cx} initial={{ opacity: 0, scale: 0.7 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.1, type: "spring" }}>
+          <circle cx={cx} cy={112} r={index === 1 ? 45 : 31} fill="var(--color-surface-hover)" stroke="var(--color-border-hover)" />
+          <circle cx={cx} cy={112} r={index === 1 ? 31 : 20} fill="none" stroke="var(--color-accent)" strokeWidth="1.5" />
+        </motion.g>
+      ))}
+      <motion.path d="M48 48 L132 104 M272 48 L188 104" stroke="var(--color-violet)" strokeWidth="4" strokeLinecap="round" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ delay: 0.35, duration: 0.45 }} />
+    </svg>
+  );
+}
+
+function SimonVisual() {
+  const pads = [
+    { x: 101, y: 46, color: "#5b6ef5" }, { x: 162, y: 46, color: "#8b5cf6" },
+    { x: 101, y: 107, color: "#4f46e5" }, { x: 162, y: 107, color: "#7c3aed" },
+  ];
+  return (
+    <svg viewBox="0 0 320 200" className="h-full w-full">
+      <rect x="83" y="28" width="156" height="156" rx="24" fill="var(--color-surface-hover)" stroke="var(--color-border-hover)" />
+      {pads.map((pad, index) => (
+        <motion.rect key={index} x={pad.x} y={pad.y} width="53" height="53" rx="12" fill={pad.color} initial={{ opacity: 0.35 }} whileInView={{ opacity: [0.35, 1, 0.35] }} viewport={{ once: true }} transition={{ delay: index * 0.18, duration: 0.55 }} />
+      ))}
+    </svg>
+  );
+}
+
 const VISUALS: Record<string, () => React.ReactElement> = {
+  "legal-docs": LegalDocsVisual,
+  "dice-game": DiceVisual,
+  "drum-kit": DrumVisual,
+  "simon-game-challenge": SimonVisual,
   "perplexa-chat": RagVisual,
   evodrive: EvoDriveVisual,
   "flappy-bird-neat": NeatVisual,
