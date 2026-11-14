@@ -45,8 +45,8 @@ export function ProjectLab({ projects }: { projects: Project[] }) {
           const inner = (
             <>
               <span className="relative hidden h-14 w-24 shrink-0 overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-surface-hover)] sm:block">
-                {p.previewImage && (
-                  <Image src={p.previewImage} alt="" fill sizes="96px" className="object-cover object-top" />
+                {(p.previewImage ?? (p.media ? `${p.media}.jpg` : undefined)) && (
+                  <Image src={(p.previewImage ?? `${p.media}.jpg`) as string} alt="" fill sizes="96px" className="object-cover object-top" />
                 )}
               </span>
               <span className="min-w-0 flex-1">

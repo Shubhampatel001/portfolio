@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Monitor } from "lucide-react";
 import type { Project } from "@/data/resume";
+import { ProjectVideo } from "./project-video";
 
 export function ProjectPreview({ project, compact = false }: { project: Project; compact?: boolean }) {
   return (
@@ -12,7 +13,9 @@ export function ProjectPreview({ project, compact = false }: { project: Project;
         <span className="ml-2 truncate font-mono text-[10px] text-[var(--color-text-faint)]">{project.name.toLowerCase().replaceAll(" ", "-")}.app</span>
       </div>
       <div className={`relative overflow-hidden bg-[var(--color-bg)] ${compact ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
-        {project.previewImage ? (
+        {project.media ? (
+          <ProjectVideo base={project.media} label={project.name} />
+        ) : project.previewImage ? (
           <Image src={project.previewImage} alt={`${project.name} project preview`} fill sizes={compact ? "(max-width: 768px) 100vw, 33vw" : "(max-width: 1024px) 100vw, 50vw"} className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
         ) : (
           <div className="flex h-full flex-col items-center justify-center gap-3 bg-[radial-gradient(circle_at_center,var(--color-accent-soft),transparent_55%)] px-6 text-center">

@@ -91,6 +91,8 @@ export type Project = {
   featured: boolean;
   hasPlayableDemo?: boolean;
   previewImage?: string;
+  /** Base path (no extension) of /public media: <base>.mp4, <base>.webm, <base>.jpg poster. */
+  media?: string;
   category: "AI/ML" | "Full Stack" | "Games" | "Web";
 };
 
@@ -114,6 +116,7 @@ export const projects: Project[] = [
     featured: false,
     previewImage: "/projects/dice-game.png",
     category: "Games",
+    media: "/projects/media/dice-game",
   },
   {
     slug: "drum-kit",
@@ -134,6 +137,7 @@ export const projects: Project[] = [
     featured: false,
     previewImage: "/projects/drum-kit.png",
     category: "Games",
+    media: "/projects/media/drum-kit",
   },
   {
     slug: "simon-game-challenge",
@@ -153,6 +157,46 @@ export const projects: Project[] = [
     demo: "https://shubhampatel001.github.io/Simon-Game-Challenge/",
     featured: false,
     category: "Games",
+    media: "/projects/media/simon-game-challenge",
+  },
+  {
+    slug: "farmaid",
+    name: "FarmAid",
+    tagline: "Agricultural loan schemes: browse, apply, track",
+    duration: "Oct 2026",
+    problem:
+      "Farmers need one place to find agricultural loan schemes, apply online and follow the status of their applications, while loan officers need to manage schemes and decide on applications.",
+    solution:
+      "Built a full-stack web application where farmers browse loan schemes, apply online and track applications, and loan officers (admins) manage the schemes and approve or reject applications. Java backend with a TypeScript frontend, containerised with Docker and checked by a CI workflow, and deployed with a live demo.",
+    learnings: [
+      "Separate farmer and officer workflows make an approval process easy to follow",
+      "Containerising the app makes a full demo runnable with one command",
+    ],
+    tech: ["Java", "TypeScript", "Docker", "CI"],
+    github: "https://github.com/Shubhampatel001/farmAid",
+    demo: "https://farmaid-onhl.onrender.com/",
+    featured: true,
+    media: "/projects/media/farmaid",
+    category: "Full Stack",
+  },
+  {
+    slug: "wedding-invitation",
+    name: "Digital Wedding Invitation",
+    tagline: "Animated, mobile-friendly invitation card",
+    duration: "Jan 2026 – Mar 2026",
+    problem:
+      "A wedding invitation that guests can open on any phone, without printing or sharing a PDF.",
+    solution:
+      "Built a digital invitation as a React (Vite) web app with a tap-to-begin intro, deployed on Vercel.",
+    learnings: [
+      "A short, tap-to-begin intro sets the tone and works well on mobile",
+    ],
+    tech: ["React", "Vite", "JavaScript", "CSS"],
+    github: "https://github.com/Shubhampatel001/anisha-naman-wedding",
+    demo: "https://anisha-naman-wedding.vercel.app",
+    featured: false,
+    media: "/projects/media/wedding",
+    category: "Web",
   },
   {
     slug: "legal-docs",
@@ -171,6 +215,7 @@ export const projects: Project[] = [
     featured: true,
     previewImage: "/projects/legal-docs.png",
     category: "Full Stack",
+    media: "/projects/media/legal-docs",
   },
   {
     slug: "perplexa-chat",
@@ -213,6 +258,7 @@ export const projects: Project[] = [
     featured: true,
     previewImage: "/projects/evodrive-map.png",
     category: "AI/ML",
+    media: "/projects/media/evodrive",
   },
   {
     slug: "flappy-bird-neat",
