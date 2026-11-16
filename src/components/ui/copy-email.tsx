@@ -20,7 +20,7 @@ export function CopyEmail({ className, children }: { className?: string; childre
 
   return (
     <>
-      <button onClick={copy} className={className}>
+      <button data-tip="Copy the email address" onClick={copy} className={className}>
         {children ?? profile.email}
       </button>
       <AnimatePresence>

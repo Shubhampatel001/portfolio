@@ -12,12 +12,12 @@ export function Footer() {
         <div className="flex items-center gap-5">
           <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className={linkCls}>linkedin</a>
           <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className={linkCls}>github</a>
-          <button onClick={openIntro} className={linkCls}>change guide</button>
+          <button data-tip="Pick a different guide" onClick={openIntro} className={linkCls}>change guide</button>
         </div>
         <div className="flex items-center gap-3 text-[var(--color-text-faint)]">
           <span>© {new Date().getFullYear()} {profile.name}</span>
           <span>· persona themes are fan-inspired, not affiliated</span>
-          <ThemeToggle />
+          <ThemeToggle tipSide="top" />
         </div>
       </div>
     </footer>

@@ -77,7 +77,20 @@ export function Backdrop({ intro = false }: { intro?: boolean }) {
     const themeObs = new MutationObserver(readColors);
     themeObs.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
 
+    // Effects belong to empty space and text. Anything the visitor can operate (or the guide dock) is left alone.
+    const SKIP = "a, button, input, textarea, select, summary, label, video, iframe, [role='button'], [role='dialog'], [role='menu'], [data-no-fx]";
+    const onControl = (t: EventTarget | null) => t instanceof Element && !!t.closest(SKIP);
+    let pressed = false;
+    let pressX = 0;
+    let pressY = 0;
+    let dragged = false;
     const onMove = (e: PointerEvent) => {
+      // A press that travels is a drag (selecting text, scrubbing a slider...), not a tap or a hold.
+      if (pressed && !dragged && Math.hypot(e.clientX - pressX, e.clientY - pressY) > 10) {
+        dragged = true;
+        downAt = -1;
+        s.hold = 0;
+      }
       if (e.pointerType !== "mouse") return;
       s.mx = e.clientX;
       s.my = e.clientY;
@@ -85,6 +98,7 @@ export function Backdrop({ intro = false }: { intro?: boolean }) {
     };
     const onLeave = () => (s.active = false);
     const onClick = (e: MouseEvent) => {
+      if (dragged || onControl(e.target)) return;
       if (e.button === 0 && !root.dataset.intro && root.dataset.fx !== "calm") scene.click?.(e.clientX, e.clientY, s);
     };
     // A tap is a click. Holding past HOLD_MIN charges (s.hold goes 0..1 by HOLD_FULL) and the release fires.
@@ -98,13 +112,18 @@ export function Backdrop({ intro = false }: { intro?: boolean }) {
     let lastBuzz = 0;
     let swallowUntil = 0;
     const onDown = (e: PointerEvent) => {
-      if (e.button !== 0 || !live() || !scene.release) return;
+      pressed = e.button === 0;
+      pressX = e.clientX;
+      pressY = e.clientY;
+      dragged = false;
+      if (e.button !== 0 || !live() || !scene.release || onControl(e.target)) return;
       downAt = performance.now();
       downX = e.clientX;
       downY = e.clientY;
       touch = e.pointerType !== "mouse";
     };
     const onUp = (e: PointerEvent) => {
+      pressed = false;
       if (downAt < 0) return;
       const held = (performance.now() - downAt) / 1000;
       downAt = -1;
@@ -120,9 +139,19 @@ export function Backdrop({ intro = false }: { intro?: boolean }) {
       if (touch) navigator.vibrate?.(30 + Math.round(power * 120));
     };
     const onCancel = () => {
+      pressed = false;
       downAt = -1;
       s.hold = 0;
     };
+    // No text selection or context menu while a hold is charging (long-press on a phone).
+    const onMenu = (e: Event) => {
+      if (downAt >= 0 && (performance.now() - downAt) / 1000 > HOLD_MIN) e.preventDefault();
+    };
+    const onSelect = (e: Event) => {
+      if (downAt >= 0) e.preventDefault();
+    };
+    window.addEventListener("contextmenu", onMenu);
+    document.addEventListener("selectstart", onSelect);
     const swallow = (e: MouseEvent) => {
       if (performance.now() < swallowUntil) {
         e.stopImmediatePropagation();
@@ -206,6 +235,8 @@ export function Backdrop({ intro = false }: { intro?: boolean }) {
       window.removeEventListener("pointercancel", onCancel);
       window.removeEventListener("blur", onCancel);
       window.removeEventListener("click", swallow, true);
+      window.removeEventListener("contextmenu", onMenu);
+      document.removeEventListener("selectstart", onSelect);
       fc.style.transform = "";
       window.removeEventListener("pointermove", onMove);
       document.removeEventListener("mouseleave", onLeave);

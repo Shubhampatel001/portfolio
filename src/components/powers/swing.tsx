@@ -116,10 +116,10 @@ export function Swing({ onClose }: { onClose: () => void }) {
             ))}
           </div>
           <div className="flex gap-2 text-xs">
-            <button onClick={next} className="rounded-full border border-[var(--color-text)] px-3 py-1 text-[var(--color-text)] hover:bg-[var(--color-text)] hover:text-[var(--color-bg)]">
+            <button data-tip="Swing to the next project" onClick={next} className="rounded-full border border-[var(--color-text)] px-3 py-1 text-[var(--color-text)] hover:bg-[var(--color-text)] hover:text-[var(--color-bg)]">
               Next
             </button>
-            <button onClick={onClose} className="rounded-full px-3 py-1 text-[var(--color-text-muted)] hover:text-[var(--color-text)]">
+            <button data-tip="End the tour and stay where you are" onClick={onClose} className="rounded-full px-3 py-1 text-[var(--color-text-muted)] hover:text-[var(--color-text)]">
               Stop tour
             </button>
           </div>

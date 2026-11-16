@@ -42,13 +42,14 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <button onClick={() => go("hero")} className="font-display text-lg font-semibold tracking-tight text-[var(--color-text)]">
+        <button data-tip="Back to the top" onClick={() => go("hero")} className="font-display text-lg font-semibold tracking-tight text-[var(--color-text)]">
           shubham<span className="text-[var(--color-accent)]">.</span>
         </button>
         <nav className="flex items-center gap-1 sm:gap-2">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
+              data-tip={`Jump to ${item.label}`}
               onClick={() => go(item.id)}
               className={cn(
                 "hidden rounded-full px-3 py-1.5 text-sm transition-colors sm:block",

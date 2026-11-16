@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
+import { Tip } from "./tip";
 
 function subscribe(cb: () => void) {
   const obs = new MutationObserver(cb);
@@ -11,7 +12,7 @@ function subscribe(cb: () => void) {
 
 const getTheme = () => document.documentElement.dataset.theme ?? "light";
 
-export function ThemeToggle({ className }: { className?: string }) {
+export function ThemeToggle({ className, tipSide = "bottom" }: { className?: string; tipSide?: "top" | "bottom" }) {
   const theme = useSyncExternalStore(subscribe, getTheme, () => "light");
 
   const toggle = () => {
@@ -23,6 +24,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   };
 
   return (
+    <Tip label={theme === "dark" ? "Switch to the light theme" : "Switch to the dark theme"} side={tipSide} align="end">
     <button
       onClick={toggle}
       aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
@@ -33,5 +35,6 @@ export function ThemeToggle({ className }: { className?: string }) {
     >
       {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
     </button>
+    </Tip>
   );
 }

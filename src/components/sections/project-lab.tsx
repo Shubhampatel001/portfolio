@@ -25,6 +25,7 @@ export function ProjectLab({ projects }: { projects: Project[] }) {
           {FILTERS.map((item) => (
             <button
               key={item}
+              data-tip={`Show ${item.toLowerCase()} projects`}
               onClick={() => setFilter(item)}
               className={cn(
                 "rounded-full border px-3 py-1.5 font-mono text-[11px] transition-colors",

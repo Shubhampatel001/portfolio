@@ -161,7 +161,7 @@ export function Detective({ onClose }: { onClose: () => void }) {
             ? "Case closed. Every clue found."
             : `${found.size} of ${clues.length} clues found. ${fine ? "Sweep the light and scroll." : "Tap an exhibit."}`}
         </span>
-        <button onClick={close} className="rounded-full bg-[#f5c518] px-3 py-1 font-bold text-[#0b0f16]">
+        <button data-tip="Leave the case board" onClick={close} className="rounded-full bg-[#f5c518] px-3 py-1 font-bold text-[#0b0f16]">
           Done
         </button>
       </motion.div>

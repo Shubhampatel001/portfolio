@@ -88,6 +88,7 @@ export function Hero() {
                   {persona.power.blurb}
                 </p>
                 <button
+                  data-tip={persona.power.blurb}
                   onClick={() => window.dispatchEvent(new CustomEvent("guide-power", { detail: { id: persona.power.id } }))}
                   className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent)] px-4 py-2 text-sm font-medium text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent)] hover:text-[var(--color-on-accent)]"
                 >
