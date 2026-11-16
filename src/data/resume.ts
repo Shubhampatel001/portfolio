@@ -93,6 +93,8 @@ export type Project = {
   previewImage?: string;
   /** Base path (no extension) of /public media: <base>.mp4, <base>.webm, <base>.jpg poster. */
   media?: string;
+  /** "contain" shows portrait recordings uncropped. Defaults to "cover". */
+  mediaFit?: "cover" | "contain";
   category: "AI/ML" | "Full Stack" | "Games" | "Web";
 };
 
@@ -280,6 +282,8 @@ export const projects: Project[] = [
     hasPlayableDemo: true,
     previewImage: "/projects/flappy-neat.png",
     category: "AI/ML",
+    media: "/projects/media/flappy-neat",
+    mediaFit: "contain",
   },
 ];
 

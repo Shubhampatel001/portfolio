@@ -14,7 +14,7 @@ export function ProjectPreview({ project, compact = false }: { project: Project;
       </div>
       <div className={`relative overflow-hidden bg-[var(--color-bg)] ${compact ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
         {project.media ? (
-          <ProjectVideo base={project.media} label={project.name} />
+          <ProjectVideo base={project.media} label={project.name} fit={project.mediaFit} />
         ) : project.previewImage ? (
           <Image src={project.previewImage} alt={`${project.name} project preview`} fill sizes={compact ? "(max-width: 768px) 100vw, 33vw" : "(max-width: 1024px) 100vw, 50vw"} className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
         ) : (

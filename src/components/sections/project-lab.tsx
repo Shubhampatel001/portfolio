@@ -19,7 +19,7 @@ export function ProjectLab({ projects }: { projects: Project[] }) {
     <div id="work" className="scroll-mt-24 mt-12 pt-16">
       <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
         <h3 className="font-display text-3xl font-semibold tracking-tight text-[var(--color-text)] sm:text-4xl">
-          all work
+          Everything else
         </h3>
         <div className="flex flex-wrap gap-2">
           {FILTERS.map((item) => (

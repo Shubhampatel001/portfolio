@@ -1,22 +1,9 @@
-import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
+import { Zen_Kaku_Gothic_New } from "next/font/google";
 
-export const bricolage = Bricolage_Grotesque({
+// One family for the whole site; weight carries the hierarchy.
+export const zen = Zen_Kaku_Gothic_New({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "700", "900"],
   variable: "--font-display",
-  display: "swap",
-});
-
-export const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-export const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
   display: "swap",
 });

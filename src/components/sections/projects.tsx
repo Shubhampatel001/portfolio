@@ -9,7 +9,7 @@ export function Projects() {
       <div className="mx-auto max-w-5xl">
         <SectionHeading
           eyebrow="selected work"
-          title="things i've built."
+          title="Selected work"
           description="From RAG search to neuro-evolution game agents: applied ML and full-stack, one project at a time."
         />
 

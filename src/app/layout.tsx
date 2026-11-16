@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { bricolage, inter, jetbrainsMono } from "@/lib/fonts";
+import { zen } from "@/lib/fonts";
 import { profile } from "@/data/resume";
+import { PERSONA_IDS } from "@/lib/personas";
 import "./globals.css";
 
-const themeScript = `try{var t=localStorage.getItem("theme");if(!t){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){}`;
+const themeScript = `try{var t=localStorage.getItem("theme");if(!t){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t;if(localStorage.getItem("fx")==="calm")document.documentElement.dataset.fx="calm";var p=localStorage.getItem("persona");var ids=${JSON.stringify(PERSONA_IDS)};if(!p||(p!=="pixel"&&ids.indexOf(p)<0))document.documentElement.dataset.intro="1";else if(ids.indexOf(p)>-1)document.documentElement.dataset.persona=p}catch(e){document.documentElement.dataset.intro="1"}`;
 
 const siteUrl = "https://shubhampatel.dev";
 
@@ -53,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${zen.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

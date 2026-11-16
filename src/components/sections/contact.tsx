@@ -13,7 +13,7 @@ export function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl bg-[var(--color-accent)] px-8 py-16 text-white sm:px-16"
+        className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl bg-[var(--color-accent)] px-8 py-16 text-[var(--color-on-accent)] sm:px-16"
       >
         <div
           aria-hidden

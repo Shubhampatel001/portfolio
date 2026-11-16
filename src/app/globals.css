@@ -2,8 +2,8 @@
 
 @theme inline {
   --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-mono: var(--font-mono);
+  --font-body: var(--font-display);
+  --font-mono: var(--font-display);
   --breakpoint-xs: 420px;
 }
 
@@ -20,6 +20,7 @@
   --color-accent: #2261e9;
   --color-accent-soft: #2261e91a;
   --color-accent-hover: #1a4cc0;
+  --color-on-accent: #ffffff;
   --color-violet: #bef264;
   --color-lime: #bef264;
   --dither-ink: rgba(11, 11, 12, 0.5);
@@ -38,6 +39,7 @@
   --color-accent: #4d85ff;
   --color-accent-soft: #4d85ff22;
   --color-accent-hover: #7aa3ff;
+  --color-on-accent: #0b0b0c;
   --dither-ink: rgba(242, 241, 236, 0.45);
   color-scheme: dark;
 }
@@ -48,6 +50,8 @@ html {
 }
 
 body {
+  position: relative;
+  z-index: 0; /* stacking context so the persona pattern (z -1) sits above the body background */
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
@@ -89,7 +93,8 @@ body {
 }
 
 .font-mono {
-  font-family: var(--font-mono), ui-monospace, monospace;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
 }
 
 .dither {
@@ -105,6 +110,187 @@ body {
   -webkit-mask-image: linear-gradient(135deg, #000 0%, transparent 85%);
   mask-image: linear-gradient(135deg, #000 0%, transparent 85%);
 }
+
+/* First-visit guide screen: always in the markup, visible only while <html data-intro> is set. */
+.guide-overlay { display: none; }
+html[data-intro] .guide-overlay { display: flex; }
+html[data-intro] { overflow: hidden; }
+
+/* ---- Personas: full palettes. Light by default; dark via data-theme. ---- */
+:root[data-persona] {
+  --color-accent-hover: color-mix(in srgb, var(--color-accent) 82%, black);
+  --color-accent-soft: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  --color-on-accent: #ffffff;
+}
+:root[data-persona][data-theme="dark"] {
+  --color-accent-hover: color-mix(in srgb, var(--color-accent) 80%, white);
+}
+:is(body, .guide-overlay)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  color: var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+:root[data-persona] :is(body, .guide-overlay)::before { opacity: 0.09; }
+:root[data-persona][data-theme="dark"] :is(body, .guide-overlay)::before { opacity: 0.16; }
+
+/* naruto */
+:root[data-persona="naruto"] {
+  --color-bg: #f6efe6;
+  --color-surface: #fffaf3;
+  --color-surface-hover: #ece2d3;
+  --color-border: #d9ccb8;
+  --color-text: #1c130b;
+  --color-text-muted: #5f5143;
+  --color-text-faint: #8f8070;
+  --color-accent: #a34605;
+  --color-lime: #2f8fd6;
+  --color-border-hover: #1c130b;
+}
+:root[data-persona="naruto"][data-theme="dark"] {
+  --color-bg: #17110c;
+  --color-surface: #211912;
+  --color-surface-hover: #2b2118;
+  --color-border: #3a2d20;
+  --color-text: #f6ece0;
+  --color-text-muted: #b4a28f;
+  --color-text-faint: #7f6f5e;
+  --color-accent: #ff9a3c;
+  --color-lime: #5cc8ff;
+  --color-border-hover: #f6ece0;
+  --color-on-accent: #17110c;
+}
+:root[data-persona="naruto"] :is(body, .guide-overlay)::before { background-image: repeating-radial-gradient(circle at 88% 14%, currentColor 0 2px, transparent 2px 28px); }
+
+
+
+
+/* spiderman: comic red / blue; halftone dots */
+:root[data-persona="spiderman"] {
+  --color-bg: #f5f1ea;
+  --color-surface: #fffdf8;
+  --color-surface-hover: #ebe5da;
+  --color-border: #d9d1c2;
+  --color-text: #101a33;
+  --color-text-muted: #4a5272;
+  --color-text-faint: #7f86a0;
+  --color-accent: #c0202b;
+  --color-lime: #2a4fa8;
+  --color-border-hover: #101a33;
+}
+:root[data-persona="spiderman"][data-theme="dark"] {
+  --color-bg: #070b1a;
+  --color-surface: #0e1530;
+  --color-surface-hover: #162044;
+  --color-border: #243061;
+  --color-text: #eef1fb;
+  --color-text-muted: #9ea8cf;
+  --color-text-faint: #646f9c;
+  --color-accent: #ff4a57;
+  --color-lime: #5b86ff;
+  --color-border-hover: #eef1fb;
+  --color-on-accent: #070b1a;
+}
+:root[data-persona="spiderman"] :is(body, .guide-overlay)::before { background-image: radial-gradient(currentColor 1.4px, transparent 1.6px); background-size: 14px 14px; }
+
+/* batman: fog grey + signal yellow / black rain */
+:root[data-persona="batman"] {
+  --color-bg: #eceef0;
+  --color-surface: #fafbfc;
+  --color-surface-hover: #dfe2e6;
+  --color-border: #c9ced5;
+  --color-text: #0f1217;
+  --color-text-muted: #4a525e;
+  --color-text-faint: #7b8492;
+  --color-accent: #8a6500;
+  --color-lime: #3b4a63;
+  --color-border-hover: #0f1217;
+}
+:root[data-persona="batman"][data-theme="dark"] {
+  --color-bg: #07090d;
+  --color-surface: #0e1219;
+  --color-surface-hover: #161c26;
+  --color-border: #1f2733;
+  --color-text: #e8ecf2;
+  --color-text-muted: #9aa5b5;
+  --color-text-faint: #637086;
+  --color-accent: #f5c518;
+  --color-lime: #5f7ea8;
+  --color-border-hover: #e8ecf2;
+  --color-on-accent: #07090d;
+}
+:root[data-persona="batman"] :is(body, .guide-overlay)::before { background-image: repeating-linear-gradient(105deg, currentColor 0 1px, transparent 1px 22px); opacity: 0.05; }
+:root[data-persona="batman"][data-theme="dark"] :is(body, .guide-overlay)::before { opacity: 0.08; }
+
+/* ghostface: paper white + red / near-black */
+:root[data-persona="ghostface"] {
+  --color-bg: #f3f1ec;
+  --color-surface: #ffffff;
+  --color-surface-hover: #e8e5de;
+  --color-border: #d6d2c8;
+  --color-text: #141214;
+  --color-text-muted: #55525a;
+  --color-text-faint: #8a8791;
+  --color-accent: #b3121a;
+  --color-lime: #2b2b30;
+  --color-border-hover: #141214;
+}
+:root[data-persona="ghostface"][data-theme="dark"] {
+  --color-bg: #0a0809;
+  --color-surface: #131011;
+  --color-surface-hover: #1c1819;
+  --color-border: #2b2326;
+  --color-text: #f0eaea;
+  --color-text-muted: #aaa1a3;
+  --color-text-faint: #706669;
+  --color-accent: #ff2d3a;
+  --color-lime: #cfcfd4;
+  --color-border-hover: #f0eaea;
+  --color-on-accent: #0a0809;
+}
+:root[data-persona="ghostface"] :is(body, .guide-overlay)::before { background-image: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 64px); opacity: 0.05; }
+:root[data-persona="ghostface"][data-theme="dark"] :is(body, .guide-overlay)::before { opacity: 0.07; }
+
+/* pennywise: carnival cream / sewer dark; red balloons */
+:root[data-persona="pennywise"] {
+  --color-bg: #f7f1e3;
+  --color-surface: #fffaf0;
+  --color-surface-hover: #ede4d0;
+  --color-border: #dcd0b6;
+  --color-text: #1d1410;
+  --color-text-muted: #5d4f45;
+  --color-text-faint: #8f8173;
+  --color-accent: #c1121f;
+  --color-lime: #e8b323;
+  --color-border-hover: #1d1410;
+}
+:root[data-persona="pennywise"][data-theme="dark"] {
+  --color-bg: #0c0d0c;
+  --color-surface: #151716;
+  --color-surface-hover: #1e211f;
+  --color-border: #2c312e;
+  --color-text: #eeeadf;
+  --color-text-muted: #a5a79c;
+  --color-text-faint: #6c6f66;
+  --color-accent: #ff3b3b;
+  --color-lime: #e8c547;
+  --color-border-hover: #eeeadf;
+  --color-on-accent: #0c0d0c;
+}
+:root[data-persona="pennywise"] :is(body, .guide-overlay)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='80'%3E%3Cellipse cx='30' cy='28' rx='12' ry='15' fill='black'/%3E%3Cpath d='M30 43 Q26 60 30 78' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E"); }
+
+/* Persona hover reactions on cards. */
+.persona-card { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.3s ease; }
+:root[data-persona="naruto"] .persona-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px -12px var(--color-accent); border-color: var(--color-accent); }
+:root[data-persona="spiderman"] .persona-card:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--color-accent), 8px 8px 0 var(--color-lime); border-color: var(--color-text); }
+:root[data-persona="pennywise"] .persona-card:hover { animation: card-wobble 0.5s ease; border-color: var(--color-accent); box-shadow: 0 8px 22px -14px var(--color-accent); }
+:root[data-persona="batman"] .persona-card:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--color-accent), 0 12px 28px -14px var(--color-accent); border-color: var(--color-accent); }
+:root[data-persona="ghostface"] .persona-card:hover { box-shadow: -4px 4px 0 var(--color-accent); transform: translate(2px, -2px); border-color: var(--color-text); }
+@keyframes card-wobble { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-0.8deg); } 60% { transform: rotate(0.7deg); } }
 
 @media (prefers-reduced-motion: reduce) {
   *,

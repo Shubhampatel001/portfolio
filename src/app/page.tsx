@@ -9,7 +9,10 @@ import { Skills } from "@/components/sections/skills";
 import { Certifications } from "@/components/sections/certifications";
 import { Achievements } from "@/components/sections/achievements";
 import { Volunteering } from "@/components/sections/volunteering";
-import { Mascot } from "@/components/ui/mascot";
+import { PowerHost } from "@/components/powers/power-host";
+import { Backdrop } from "@/components/backdrops/backdrop";
+import { GuideDock } from "@/components/ui/guide-dock";
+import { GuideSelect } from "@/components/ui/guide-select";
 import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
@@ -28,7 +31,10 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <Mascot />
+      <Backdrop />
+      <GuideSelect />
+      <GuideDock />
+      <PowerHost />
     </SmoothScrollProvider>
   );
 }

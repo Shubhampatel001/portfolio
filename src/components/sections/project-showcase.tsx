@@ -17,7 +17,8 @@ export function ProjectShowcase({ project, index }: { project: Project; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="group grid grid-cols-1 items-center gap-10 border-b border-[var(--color-border)] py-16 last:border-none lg:grid-cols-2 lg:gap-16"
+      id={`project-${project.slug}`}
+      className="group scroll-mt-28 grid grid-cols-1 items-center gap-10 border-b border-[var(--color-border)] py-16 last:border-none lg:grid-cols-2 lg:gap-16"
     >
       <div className={cn(reversed && "lg:order-2")}>
         <ProjectPreview project={project} />

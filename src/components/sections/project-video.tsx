@@ -11,7 +11,7 @@ const subscribeMotion = (cb: () => void) => {
 const getMotion = () => window.matchMedia(QUERY).matches;
 
 /** Lazy, muted, looping project clip. Plays only while on screen; poster only under reduced motion. */
-export function ProjectVideo({ base, label }: { base: string; label: string }) {
+export function ProjectVideo({ base, label, fit = "cover" }: { base: string; label: string; fit?: "cover" | "contain" }) {
   const ref = useRef<HTMLVideoElement>(null);
   const reduced = useSyncExternalStore(subscribeMotion, getMotion, () => false);
 
@@ -38,7 +38,7 @@ export function ProjectVideo({ base, label }: { base: string; label: string }) {
       preload={reduced ? "none" : "metadata"}
       poster={`${base}.jpg`}
       aria-label={`${label} demo recording`}
-      className="h-full w-full object-cover object-top"
+      className={fit === "contain" ? "h-full w-full bg-[var(--color-surface-hover)] object-contain" : "h-full w-full object-cover object-top"}
     >
       <source src={`${base}.webm`} type="video/webm" />
       <source src={`${base}.mp4`} type="video/mp4" />
