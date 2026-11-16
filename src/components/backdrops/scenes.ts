@@ -20,6 +20,10 @@ export type SceneState = {
   mobile: boolean;
   /** Calm mode: no pointer reactions and no click effects, just the quiet scenery. */
   calm: boolean;
+  /** While the button is held past a short tap: 0..1 charge, and where it was pressed (follows the pointer). */
+  hold: number;
+  hx: number;
+  hy: number;
   accent: string;
   alt: string;
   text: string;
@@ -40,6 +44,8 @@ export type Scene = {
   back?: (c: Ctx, s: SceneState) => void;
   front?: (c: Ctx, s: SceneState) => void;
   click?: (x: number, y: number, s: SceneState) => void;
+  /** Button released after a long hold; power is the charge, 0..1. A short tap calls click instead. */
+  release?: (x: number, y: number, s: SceneState, power: number) => void;
 };
 
 const rand = (a: number, b: number) => a + Math.random() * (b - a);
@@ -79,7 +85,9 @@ export function naruto(s0: SceneState): Scene {
     kx: 0,
     ky: 0,
   }));
+  // A tap makes a ring and a gust. Holding charges a rasengan at the pointer; release blasts.
   const rings: { x: number; y: number; age: number }[] = [];
+  const blasts: { x: number; y: number; age: number; p: number }[] = [];
 
   return {
     back(c, s) {
@@ -88,6 +96,17 @@ export function naruto(s0: SceneState): Scene {
       for (const l of leaves) {
         // Leaves drift on their own, shy away from the pointer, and get blown by clicks.
         const [px, py] = shove(l.x, l.y, s, 130, 700);
+        if (s.hold > 0) {
+          // Leaves are drawn into the charging sphere.
+          const dx = s.hx - l.x;
+          const dy = s.hy - l.y;
+          const d = Math.hypot(dx, dy) || 1;
+          if (d < 320) {
+            const k = (1 - d / 320) * 900 * s.hold * s.dt;
+            l.kx += (dx / d) * k;
+            l.ky += (dy / d) * k;
+          }
+        }
         l.kx *= Math.pow(0.04, s.dt);
         l.ky *= Math.pow(0.04, s.dt);
         l.x += (28 * l.z + Math.sin(s.t * 0.8 + l.ph) * 14 + l.kx) * s.dt + px;
@@ -126,6 +145,79 @@ export function naruto(s0: SceneState): Scene {
         c.stroke();
       }
       c.globalAlpha = 1;
+      if (s.hold > 0) {
+        const p = s.hold;
+        // The sphere trembles harder as it charges: that is the warning that a release is coming.
+        const hx = s.hx + rand(-1, 1) * p * 4;
+        const hy = s.hy + rand(-1, 1) * p * 4;
+        const r = 6 + p * 34 + Math.sin(s.t * 30) * p * 1.5;
+        const g = c.createRadialGradient(hx, hy, 0, hx, hy, r * 2.6);
+        g.addColorStop(0, hexA(s.alt, 0.55));
+        g.addColorStop(1, hexA(s.alt, 0));
+        c.fillStyle = g;
+        c.fillRect(hx - r * 2.6, hy - r * 2.6, r * 5.2, r * 5.2);
+        c.lineCap = "round";
+        for (let k = 0; k < 5; k++) {
+          const a0 = s.t * 14 + (k / 5) * TAU;
+          c.strokeStyle = k % 2 ? "#ffffff" : s.alt;
+          c.globalAlpha = 0.85;
+          c.lineWidth = 2.4;
+          c.beginPath();
+          c.arc(hx, hy, r * (0.55 + 0.1 * k), a0, a0 + 1.3);
+          c.stroke();
+        }
+        c.globalAlpha = 0.95;
+        c.fillStyle = "#ffffff";
+        c.beginPath();
+        c.arc(hx, hy, r * 0.42, 0, TAU);
+        c.fill();
+        // Sparks orbit the sphere and tighten as it nears full charge.
+        c.fillStyle = s.alt;
+        for (let k = 0; k < 6; k++) {
+          const a = -s.t * 9 + (k / 6) * TAU;
+          const rr = r * (1.4 + 0.5 * Math.sin(s.t * 6 + k)) * (1.1 - p * 0.3);
+          c.beginPath();
+          c.arc(hx + Math.cos(a) * rr, hy + Math.sin(a) * rr, 2.2, 0, TAU);
+          c.fill();
+        }
+        c.globalAlpha = 1;
+      }
+      for (let i = blasts.length - 1; i >= 0; i--) {
+        const b = blasts[i];
+        b.age += s.dt;
+        const life = 0.45 + b.p * 0.35;
+        if (b.age > life) { blasts.splice(i, 1); continue; }
+        const t = b.age / life;
+        const R = (140 + b.p * 380) * (1 - Math.pow(1 - t, 3));
+        c.globalAlpha = (1 - t) * 0.9;
+        c.strokeStyle = s.alt;
+        c.lineWidth = 3 + b.p * 7 * (1 - t);
+        c.beginPath();
+        c.arc(b.x, b.y, R, 0, TAU);
+        c.stroke();
+        c.strokeStyle = "#ffffff";
+        c.lineWidth = 1.5;
+        c.beginPath();
+        c.arc(b.x, b.y, R * 0.7, 0, TAU);
+        c.stroke();
+        c.strokeStyle = s.alt;
+        c.lineWidth = 2;
+        c.beginPath();
+        for (let k = 0; k < 16; k++) {
+          const a = (k / 16) * TAU + b.p;
+          c.moveTo(b.x + Math.cos(a) * R * 0.45, b.y + Math.sin(a) * R * 0.45);
+          c.lineTo(b.x + Math.cos(a) * R * 0.95, b.y + Math.sin(a) * R * 0.95);
+        }
+        c.stroke();
+        if (t < 0.25) {
+          c.globalAlpha = (1 - t / 0.25) * 0.7;
+          c.fillStyle = "#ffffff";
+          c.beginPath();
+          c.arc(b.x, b.y, 24 + b.p * 50, 0, TAU);
+          c.fill();
+        }
+      }
+      c.globalAlpha = 1;
     },
     click(x, y) {
       rings.push({ x, y, age: 0 });
@@ -141,6 +233,24 @@ export function naruto(s0: SceneState): Scene {
         }
       }
     },
+    release(x, y, s, power) {
+      const p = Math.max(0.15, power);
+      const bx = s.hx;
+      const by = s.hy;
+      blasts.push({ x: bx, y: by, age: 0, p });
+      // The blast throws leaves outward, harder the longer it was charged.
+      const reach = 200 + p * 360;
+      for (const l of leaves) {
+        const dx = l.x - bx;
+        const dy = l.y - by;
+        const d = Math.hypot(dx, dy) || 1;
+        if (d < reach) {
+          const k = (1 - d / reach) * (500 + p * 1100);
+          l.kx += (dx / d) * k;
+          l.ky += (dy / d) * k;
+        }
+      }
+    },
   };
 }
 
@@ -150,7 +260,7 @@ export function spiderman(): Scene {
   const sagTL = spring();
   const sagBR = spring();
   // A web shot: a thread from the nearest corner to where you clicked, then a splat.
-  const shots: { x: number; y: number; cx: number; cy: number; age: number }[] = [];
+  const shots: { x: number; y: number; cx: number; cy: number; age: number; rot: number; big: number }[] = [];
 
   /** A quarter web fanning out from a corner; rings sag with scroll speed. */
   function web(c: Ctx, ox: number, oy: number, sx: number, sy: number, size: number, sag: number) {
@@ -190,22 +300,61 @@ export function spiderman(): Scene {
       c.globalAlpha = 1;
     },
     front(c, s) {
+      if (s.hold > 0) {
+        // Four threads pull taut toward the pointer and hum; a web forms where it will land.
+        const p = s.hold;
+        c.lineCap = "round";
+        c.strokeStyle = s.text;
+        for (const [ox, oy] of [[0, 0], [s.w, 0], [0, s.h], [s.w, s.h]]) {
+          const len = Math.hypot(s.hx - ox, s.hy - oy) || 1;
+          const nx = -(s.hy - oy) / len;
+          const ny = (s.hx - ox) / len;
+          const wob = Math.sin(s.t * (40 + p * 50) + ox) * (3 + p * 14);
+          c.globalAlpha = 0.25 + p * 0.6;
+          c.lineWidth = 1 + p * 3;
+          c.beginPath();
+          c.moveTo(ox, oy);
+          c.quadraticCurveTo((ox + s.hx) / 2 + nx * wob, (oy + s.hy) / 2 + ny * wob, s.hx, s.hy);
+          c.stroke();
+        }
+        const R = 14 + p * 70;
+        c.globalAlpha = 0.4 + p * 0.5;
+        c.lineWidth = 1.5;
+        c.beginPath();
+        for (let k = 0; k < 9; k++) {
+          const a = (k / 9) * TAU + s.t * 0.4;
+          c.moveTo(s.hx, s.hy);
+          c.lineTo(s.hx + Math.cos(a) * R + rand(-1, 1) * p * 2, s.hy + Math.sin(a) * R + rand(-1, 1) * p * 2);
+        }
+        c.stroke();
+        c.beginPath();
+        c.arc(s.hx, s.hy, R * 0.6, 0, TAU);
+        c.stroke();
+        c.globalAlpha = 1;
+      }
       for (let i = shots.length - 1; i >= 0; i--) {
         const p = shots[i];
         p.age += s.dt;
-        if (p.age > 0.8) { shots.splice(i, 1); continue; }
-        const reach = Math.min(1, p.age / 0.12);
-        const fade = p.age < 0.35 ? 1 : 1 - (p.age - 0.35) / 0.45;
+        const tap = p.big === 0;
+        if (p.age > (tap ? 0.8 : 2)) { shots.splice(i, 1); continue; }
+        const reach = Math.min(1, p.age / (tap ? 0.12 : 0.1));
+        const fade = tap ? (p.age < 0.35 ? 1 : 1 - (p.age - 0.35) / 0.45) : p.age < 1.3 ? 1 : 1 - (p.age - 1.3) / 0.7;
         const ex = p.cx + (p.x - p.cx) * reach;
         const ey = p.cy + (p.y - p.cy) * reach;
-        c.globalAlpha = fade * 0.75;
+        // The thread twangs when it lands, then settles.
+        const len = Math.hypot(p.x - p.cx, p.y - p.cy) || 1;
+        const nx = -(p.y - p.cy) / len;
+        const ny = (p.x - p.cx) / len;
+        const wob = !tap && reach >= 1 ? Math.sin((p.age - 0.1) * 42) * 16 * Math.exp(-(p.age - 0.1) * 5) : 0;
+        c.lineCap = "round";
         c.strokeStyle = s.text;
-        c.lineWidth = 1.4;
+        c.globalAlpha = fade * (tap ? 0.75 : 0.9);
+        c.lineWidth = tap ? 1.4 : 3 + p.big * 3;
         c.beginPath();
         c.moveTo(p.cx, p.cy);
-        c.lineTo(ex, ey);
+        c.quadraticCurveTo((p.cx + ex) / 2 + nx * wob, (p.cy + ey) / 2 + ny * wob, ex, ey);
         c.stroke();
-        if (reach >= 1) {
+        if (tap && reach >= 1) {
           const r = 8 + (p.age - 0.12) * 30;
           c.globalAlpha = fade;
           c.strokeStyle = s.accent;
@@ -220,12 +369,50 @@ export function spiderman(): Scene {
           c.beginPath();
           c.arc(p.x, p.y, r * 0.6, 0, TAU);
           c.stroke();
+        } else if (reach >= 1) {
+          // The splat: a proper web, thick spokes with sagging rings, popping out with a little overshoot.
+          const grow = Math.min(1, (p.age - 0.1) / 0.14);
+          const R = (s.mobile ? 62 : 84) * (1 + p.big * 2.4) * (1 - Math.pow(1 - grow, 3)) * (1 + Math.sin(grow * Math.PI) * 0.12);
+          const spokes = 9;
+          c.globalAlpha = fade * 0.95;
+          c.strokeStyle = s.text;
+          c.lineWidth = 2.2;
+          c.beginPath();
+          for (let k = 0; k < spokes; k++) {
+            const a = (k / spokes) * TAU + p.rot;
+            c.moveTo(p.x, p.y);
+            c.lineTo(p.x + Math.cos(a) * R, p.y + Math.sin(a) * R);
+          }
+          c.stroke();
+          c.lineWidth = 1.6;
+          c.beginPath();
+          for (let ring = 1; ring <= 4; ring++) {
+            const rr = (R * ring) / 4;
+            for (let k = 0; k < spokes; k++) {
+              const a1 = (k / spokes) * TAU + p.rot;
+              const a2 = ((k + 1) / spokes) * TAU + p.rot;
+              const am = (a1 + a2) / 2;
+              c.moveTo(p.x + Math.cos(a1) * rr, p.y + Math.sin(a1) * rr);
+              c.quadraticCurveTo(p.x + Math.cos(am) * rr * 0.82, p.y + Math.sin(am) * rr * 0.82, p.x + Math.cos(a2) * rr, p.y + Math.sin(a2) * rr);
+            }
+          }
+          c.stroke();
+          c.globalAlpha = fade * 0.9;
+          c.fillStyle = s.accent;
+          c.beginPath();
+          c.arc(p.x, p.y, 5, 0, TAU);
+          c.fill();
         }
       }
       c.globalAlpha = 1;
     },
     click(x, y, s) {
-      shots.push({ x, y, cx: x < s.w / 2 ? 0 : s.w, cy: y < s.h / 2 ? 0 : s.h, age: 0 });
+      shots.push({ x, y, cx: x < s.w / 2 ? 0 : s.w, cy: y < s.h / 2 ? 0 : s.h, age: 0, rot: rand(0, TAU), big: 0 });
+    },
+    release(x, y, s, power) {
+      // Webs from all four corners slam into the spot, bigger the longer it was held.
+      const rot = rand(0, TAU);
+      for (const [cx, cy] of [[0, 0], [s.w, 0], [0, s.h], [s.w, s.h]]) shots.push({ x: s.hx, y: s.hy, cx, cy, age: 0, rot: rot + cx * 0.001, big: 0.3 + power * 0.7 });
     },
   };
 }
@@ -255,6 +442,13 @@ export function pennywise(s0: SceneState): Scene {
   }));
   type Shard = { x: number; y: number; vx: number; vy: number; life: number };
   const shards: Shard[] = [];
+  const bursts: { x: number; y: number; age: number; R: number }[] = [];
+  const pop = (x: number, y: number, n: number) => {
+    for (let i = 0; i < n; i++) {
+      const a = rand(0, TAU);
+      shards.push({ x, y, vx: Math.cos(a) * rand(80, 260), vy: Math.sin(a) * rand(80, 260) - 80, life: 0.8 });
+    }
+  };
 
   return {
     back(c, s) {
@@ -280,6 +474,34 @@ export function pennywise(s0: SceneState): Scene {
       c.globalAlpha = 1;
     },
     front(c, s) {
+      if (s.hold > 0) {
+        // A balloon swells at the pointer, shaking harder as it fills.
+        const p = s.hold;
+        const r = 14 + p * (s.mobile ? 70 : 105);
+        const sx = s.hx + rand(-1, 1) * p * 5;
+        const sy = s.hy + rand(-1, 1) * p * 5;
+        c.globalAlpha = 0.92;
+        c.fillStyle = s.accent;
+        balloon(c, sx, sy, r);
+        c.globalAlpha = 0.4;
+        c.fillStyle = "#ffffff";
+        c.beginPath();
+        c.ellipse(sx - r * 0.38, sy - r * 0.45, r * 0.18, r * 0.3, -0.5, 0, TAU);
+        c.fill();
+        c.globalAlpha = 1;
+      }
+      for (let i = bursts.length - 1; i >= 0; i--) {
+        const b = bursts[i];
+        b.age += s.dt;
+        if (b.age > 0.5) { bursts.splice(i, 1); continue; }
+        c.globalAlpha = (1 - b.age / 0.5) * 0.8;
+        c.strokeStyle = s.accent;
+        c.lineWidth = 4;
+        c.beginPath();
+        c.arc(b.x, b.y, b.R * (1 - Math.pow(1 - b.age / 0.5, 3)), 0, TAU);
+        c.stroke();
+      }
+      c.globalAlpha = 1;
       c.fillStyle = s.accent;
       for (let i = shards.length - 1; i >= 0; i--) {
         const p = shards[i];
@@ -288,21 +510,31 @@ export function pennywise(s0: SceneState): Scene {
         p.vy += 520 * s.dt;
         p.x += p.vx * s.dt;
         p.y += p.vy * s.dt;
-        c.globalAlpha = clamp(p.life / 0.7, 0, 1);
-        c.fillRect(p.x, p.y, 5, 3);
+        c.globalAlpha = clamp(p.life / 0.8, 0, 1);
+        c.fillRect(p.x, p.y, 6, 3);
       }
       c.globalAlpha = 1;
     },
     click(x, y, s) {
       for (const b of balloons) {
         if (Math.hypot(b.x - x, (b.y - y) / 1.2) > b.r * 1.3) continue;
-        for (let i = 0; i < 12; i++) {
-          const a = rand(0, TAU);
-          shards.push({ x: b.x, y: b.y, vx: Math.cos(a) * rand(60, 200), vy: Math.sin(a) * rand(60, 200) - 80, life: 0.7 });
-        }
+        pop(b.x, b.y, 12);
         b.y = s.h + b.r * 3;
         b.x = rand(0, s.w);
-        break;
+        return;
+      }
+    },
+    release(x, y, s, power) {
+      // The held balloon bursts; the bang pops every balloon nearby, more of them the longer it was held.
+      const r = 14 + power * (s.mobile ? 70 : 105);
+      pop(s.hx, s.hy, 18 + Math.round(power * 60));
+      bursts.push({ x: s.hx, y: s.hy, age: 0, R: r * 2 + power * 260 });
+      const reach = r * 2 + power * 260;
+      for (const b of balloons) {
+        if (Math.hypot(b.x - s.hx, b.y - s.hy) > reach) continue;
+        pop(b.x, b.y, 10);
+        b.y = s.h + b.r * 3;
+        b.x = rand(0, s.w);
       }
     },
   };
@@ -333,6 +565,18 @@ export function batman(s0: SceneState): Scene {
   const drops = Array.from({ length: n }, () => ({ x: rand(0, s0.w + 200), y: rand(0, s0.h), l: rand(10, 22), v: rand(600, 900) }));
   const fogs = Array.from({ length: 4 }, (_, i) => ({ x: rand(0, s0.w), y: rand(0.2, 0.9) * s0.h, r: rand(220, 380), v: rand(8, 18) * (i % 2 ? 1 : -1) }));
   const rings: { x: number; y: number; age: number }[] = [];
+  // Click to throw a batarang from the side; it spins in and sticks.
+  const FLY = 0.26;
+  const knives: { sx: number; sy: number; x: number; y: number; age: number; spin: number; stuck: number; landed: boolean }[] = [];
+  const throwAt = (x: number, y: number, s: SceneState, fromLeft: boolean) =>
+    knives.push({ sx: fromLeft ? -40 : s.w + 40, sy: clamp(y + rand(40, 160), 0, s.h), x, y, age: 0, spin: rand(0, TAU), stuck: rand(-0.6, 0.6), landed: false });
+  const bat = (c: Ctx, size: number) => {
+    const half: [number, number][] = [[0, -5], [3, -9], [5, -5], [12, -9], [23, -2], [17, -1], [15, 4], [10, 1], [5, 6], [0, 9]];
+    c.beginPath();
+    half.forEach(([x, y], i) => (i ? c.lineTo(x * size, y * size) : c.moveTo(x * size, y * size)));
+    for (let i = half.length - 1; i >= 0; i--) c.lineTo(-half[i][0] * size, half[i][1] * size);
+    c.closePath();
+  };
 
   return {
     back(c, s) {
@@ -374,6 +618,61 @@ export function batman(s0: SceneState): Scene {
       c.stroke();
     },
     front(c, s) {
+      if (s.hold > 0) {
+        // A batarang hovers at the pointer, spinning faster and shaking as the charge builds.
+        const p = s.hold;
+        const g = c.createRadialGradient(s.hx, s.hy, 0, s.hx, s.hy, 40 + p * 90);
+        g.addColorStop(0, hexA(s.accent, 0.35 + p * 0.3));
+        g.addColorStop(1, hexA(s.accent, 0));
+        c.fillStyle = g;
+        c.fillRect(s.hx - 130, s.hy - 130, 260, 260);
+        c.save();
+        c.translate(s.hx + rand(-1, 1) * p * 4, s.hy + rand(-1, 1) * p * 4);
+        c.rotate(s.t * (8 + p * 34));
+        c.fillStyle = s.dark ? "#d7dbe6" : "#12151c";
+        c.strokeStyle = s.accent;
+        c.lineWidth = 1.5;
+        bat(c, 1.2 + p * 2.2);
+        c.fill();
+        c.stroke();
+        c.restore();
+      }
+      for (let i = knives.length - 1; i >= 0; i--) {
+        const k = knives[i];
+        k.age += s.dt;
+        const t = Math.min(1, k.age / FLY);
+        const e = 1 - Math.pow(1 - t, 2);
+        if (t >= 1 && !k.landed) {
+          k.landed = true;
+          rings.push({ x: k.x, y: k.y, age: 0 });
+        }
+        const after = k.age - FLY;
+        if (after > 0.9) { knives.splice(i, 1); continue; }
+        const px = k.sx + (k.x - k.sx) * e;
+        const py = k.sy + (k.y - k.sy) * e;
+        c.globalAlpha = after > 0.55 ? 1 - (after - 0.55) / 0.35 : 1;
+        if (t < 1) {
+          // A motion streak behind the spinning blade.
+          c.strokeStyle = hexA(s.text, 0.35);
+          c.lineWidth = 2;
+          c.beginPath();
+          c.moveTo(k.sx + (k.x - k.sx) * Math.max(0, e - 0.3), k.sy + (k.y - k.sy) * Math.max(0, e - 0.3));
+          c.lineTo(px, py);
+          c.stroke();
+        }
+        c.save();
+        c.translate(px, py);
+        // Spins in flight, then sticks at a slight tilt with a small wobble.
+        c.rotate(t < 1 ? k.spin + t * 26 : k.stuck + Math.sin(after * 60) * 0.12 * Math.exp(-after * 6));
+        c.fillStyle = s.dark ? "#d7dbe6" : "#12151c";
+        c.strokeStyle = s.accent;
+        c.lineWidth = 1.5;
+        bat(c, 1.25);
+        c.fill();
+        c.stroke();
+        c.restore();
+      }
+      c.globalAlpha = 1;
       for (let i = rings.length - 1; i >= 0; i--) {
         const r = rings[i];
         r.age += s.dt;
@@ -390,6 +689,14 @@ export function batman(s0: SceneState): Scene {
     click(x, y) {
       rings.push({ x, y, age: 0 });
     },
+    release(x, y, s, power) {
+      // A volley, wider and bigger the longer it was held.
+      const n = 3 + Math.round(power * 8);
+      for (let i = 0; i < n; i++) {
+        throwAt(s.hx + rand(-1, 1) * (40 + power * 240), s.hy + rand(-1, 1) * (30 + power * 170), s, i % 2 === 0);
+      }
+      rings.push({ x: s.hx, y: s.hy, age: 0 });
+    },
   };
 }
 
@@ -400,7 +707,35 @@ export function ghostface(s0: SceneState): Scene {
   // A phone "ringing" in the corner every so often: slow, soft rings (no flashing).
   let ringIn = 6;
   let ringAge = -1;
-  const slashes: { x: number; y: number; age: number }[] = [];
+  const slashes: { x: number; y: number; age: number; h: number }[] = [];
+  // A held release: the mask lunges out of the dark at that spot, then drops away.
+  const masks: { x: number; y: number; age: number; tilt: number; k: number }[] = [];
+  const mask = (c: Ctx, dark: boolean) => {
+    c.fillStyle = dark ? "#eeeae0" : "#f7f4ec";
+    c.strokeStyle = dark ? "#0b0b0d" : "#15151a";
+    c.lineWidth = 2;
+    c.beginPath();
+    c.moveTo(-24, -34);
+    c.quadraticCurveTo(0, -42, 24, -34);
+    c.quadraticCurveTo(28, 6, 18, 36);
+    c.quadraticCurveTo(0, 56, -18, 36);
+    c.quadraticCurveTo(-28, 6, -24, -34);
+    c.closePath();
+    c.fill();
+    c.stroke();
+    c.fillStyle = "#0b0b0d";
+    for (const sx of [-1, 1]) {
+      c.beginPath();
+      c.moveTo(sx * 15, -18);
+      c.quadraticCurveTo(sx * 5, -20, sx * 7, -3);
+      c.quadraticCurveTo(sx * 9, 8, sx * 14, 12);
+      c.quadraticCurveTo(sx * 19, -2, sx * 15, -18);
+      c.fill();
+    }
+    c.beginPath();
+    c.ellipse(0, 28, 7, 13, 0, 0, TAU);
+    c.fill();
+  };
 
   return {
     back(c, s) {
@@ -432,6 +767,17 @@ export function ghostface(s0: SceneState): Scene {
       }
     },
     front(c, s) {
+      if (s.hold > 0) {
+        // The mask creeps out of the dark at the pointer, trembling more as it nears.
+        const p = s.hold;
+        c.globalAlpha = 0.15 + p * 0.8;
+        c.save();
+        c.translate(s.hx + rand(-1, 1) * p * 4, s.hy + rand(-1, 1) * p * 4);
+        c.scale(0.3 + p * 1.3, 0.3 + p * 1.3);
+        mask(c, s.dark);
+        c.restore();
+        c.globalAlpha = 1;
+      }
       for (let i = slashes.length - 1; i >= 0; i--) {
         const sl = slashes[i];
         sl.age += s.dt;
@@ -442,14 +788,34 @@ export function ghostface(s0: SceneState): Scene {
         c.lineWidth = 3;
         c.lineCap = "round";
         c.beginPath();
-        c.moveTo(sl.x - 22, sl.y - 22);
-        c.lineTo(sl.x - 22 + 44 * p, sl.y - 22 + 44 * p);
+        c.moveTo(sl.x - sl.h, sl.y - sl.h);
+        c.lineTo(sl.x - sl.h + sl.h * 2 * p, sl.y - sl.h + sl.h * 2 * p);
         c.stroke();
+      }
+      for (let i = masks.length - 1; i >= 0; i--) {
+        const m = masks[i];
+        m.age += s.dt;
+        if (m.age > 0.9) { masks.splice(i, 1); continue; }
+        const inT = Math.min(1, m.age / 0.14);
+        const scale = (0.35 + 0.85 * (1 - Math.pow(1 - inT, 3))) * (1 + Math.min(m.age, 0.5) * 0.12);
+        c.globalAlpha = m.age < 0.55 ? 0.96 : 0.96 * (1 - (m.age - 0.55) / 0.35);
+        c.save();
+        c.translate(m.x, m.y + (m.age > 0.55 ? (m.age - 0.55) * 90 : 0));
+        c.rotate(m.tilt);
+        c.scale(scale * m.k, scale * m.k);
+        mask(c, s.dark);
+        c.restore();
       }
       c.globalAlpha = 1;
     },
     click(x, y) {
-      slashes.push({ x, y, age: 0 });
+      slashes.push({ x, y, age: 0, h: 22 });
+    },
+    release(x, y, s, power) {
+      // The mask lunges huge out of the dark and the knife slashes around it.
+      masks.push({ x: s.hx, y: s.hy, age: 0, tilt: rand(-0.2, 0.2), k: 1.4 + power * 2.6 });
+      const n = 2 + Math.round(power * 5);
+      for (let i = 0; i < n; i++) slashes.push({ x: s.hx + rand(-1, 1) * (60 + power * 220), y: s.hy + rand(-1, 1) * (40 + power * 160), age: 0, h: 40 + power * 70 });
     },
   };
 }

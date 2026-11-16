@@ -8,6 +8,18 @@ import { SCENES, type Scene, type SceneState } from "./scenes";
  * Two fixed canvases for the active guide: ambient scenery behind the page and cursor effects above it.
  * Nothing runs for the neutral guide, with reduced motion, or while the tab is hidden.
  */
+const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
+
+/** "#rrggbb" or "#rgb" to rgba(); other colour formats get a plain fallback. */
+function hexAlpha(color: string, a: number) {
+  let h = color.trim();
+  if (!h.startsWith("#")) return `rgba(255,255,255,${a})`;
+  h = h.slice(1);
+  if (h.length === 3) h = h.split("").map((x) => x + x).join("");
+  const n = parseInt(h.slice(0, 6), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+}
+
 export function Backdrop({ intro = false }: { intro?: boolean }) {
   const persona = usePersona();
   // The page-level backdrop steps aside while the guide picker is open; the picker runs its own copy
@@ -37,7 +49,7 @@ export function Backdrop({ intro = false }: { intro?: boolean }) {
     const root = document.documentElement;
     const s: SceneState = {
       w: 0, h: 0, t: 0, dt: 0, mx: 0, my: 0, active: false, sv: 0,
-      dark: false, mobile: false, calm: false, accent: "#000", alt: "#000", text: "#000",
+      dark: false, mobile: false, calm: false, hold: 0, hx: 0, hy: 0, accent: "#000", alt: "#000", text: "#000",
     };
     let dpr = 1;
 
@@ -75,6 +87,53 @@ export function Backdrop({ intro = false }: { intro?: boolean }) {
     const onClick = (e: MouseEvent) => {
       if (e.button === 0 && !root.dataset.intro && root.dataset.fx !== "calm") scene.click?.(e.clientX, e.clientY, s);
     };
+    // A tap is a click. Holding past HOLD_MIN charges (s.hold goes 0..1 by HOLD_FULL) and the release fires.
+    const HOLD_MIN = 0.35;
+    const HOLD_FULL = 3;
+    const live = () => !root.dataset.intro && root.dataset.fx !== "calm";
+    let downAt = -1;
+    let downX = 0;
+    let downY = 0;
+    let touch = false;
+    let lastBuzz = 0;
+    let swallowUntil = 0;
+    const onDown = (e: PointerEvent) => {
+      if (e.button !== 0 || !live() || !scene.release) return;
+      downAt = performance.now();
+      downX = e.clientX;
+      downY = e.clientY;
+      touch = e.pointerType !== "mouse";
+    };
+    const onUp = (e: PointerEvent) => {
+      if (downAt < 0) return;
+      const held = (performance.now() - downAt) / 1000;
+      downAt = -1;
+      if (held < HOLD_MIN) {
+        s.hold = 0;
+        return;
+      }
+      const power = clamp01((held - HOLD_MIN) / (HOLD_FULL - HOLD_MIN));
+      s.hold = 0;
+      scene.release?.(e.clientX, e.clientY, s, power);
+      // The browser's click that follows a long hold is not a tap: keep it from firing buttons or a second effect.
+      swallowUntil = performance.now() + 80;
+      if (touch) navigator.vibrate?.(30 + Math.round(power * 120));
+    };
+    const onCancel = () => {
+      downAt = -1;
+      s.hold = 0;
+    };
+    const swallow = (e: MouseEvent) => {
+      if (performance.now() < swallowUntil) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+      }
+    };
+    window.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onCancel);
+    window.addEventListener("blur", onCancel);
+    window.addEventListener("click", swallow, true);
     window.addEventListener("pointermove", onMove, { passive: true });
     document.addEventListener("mouseleave", onLeave);
     window.addEventListener("click", onClick);
@@ -93,6 +152,16 @@ export function Backdrop({ intro = false }: { intro?: boolean }) {
       prev = now;
       s.t += s.dt;
       s.calm = root.dataset.fx === "calm";
+      if (downAt >= 0) {
+        const held = (performance.now() - downAt) / 1000;
+        s.hold = held < HOLD_MIN ? 0 : clamp01((held - HOLD_MIN) / (HOLD_FULL - HOLD_MIN));
+        s.hx = s.active ? s.mx : downX;
+        s.hy = s.active ? s.my : downY;
+        if (s.hold > 0 && touch && now - lastBuzz > 220 - s.hold * 130) {
+          lastBuzz = now;
+          navigator.vibrate?.(8 + Math.round(s.hold * 25));
+        }
+      }
       const y = window.scrollY;
       const perFrame = s.dt > 0 ? (y - prevY) / (s.dt * 60) : 0;
       prevY = y;
@@ -112,12 +181,32 @@ export function Backdrop({ intro = false }: { intro?: boolean }) {
       }
       scene.front?.(fctx, s);
       fctx.globalAlpha = 1;
+      if (s.hold > 0) {
+        // Visual vibration: the whole effects layer shakes and the screen edges pulse, harder as the charge builds.
+        const k = s.hold;
+        const j = k * 3.5;
+        fc.style.transform = `translate(${(Math.random() - 0.5) * j}px, ${(Math.random() - 0.5) * j}px)`;
+        const pulse = 0.5 + 0.5 * Math.sin(s.t * (10 + k * 30));
+        const g = fctx.createRadialGradient(s.w / 2, s.h / 2, Math.min(s.w, s.h) * (0.55 - k * 0.15), s.w / 2, s.h / 2, Math.max(s.w, s.h) * 0.75);
+        g.addColorStop(0, "rgba(0,0,0,0)");
+        g.addColorStop(1, hexAlpha(s.accent, (0.12 + k * 0.4) * (0.6 + pulse * 0.4)));
+        fctx.fillStyle = g;
+        fctx.fillRect(0, 0, s.w, s.h);
+      } else if (fc.style.transform) {
+        fc.style.transform = "";
+      }
     };
     raf = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(raf);
       themeObs.disconnect();
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onCancel);
+      window.removeEventListener("blur", onCancel);
+      window.removeEventListener("click", swallow, true);
+      fc.style.transform = "";
       window.removeEventListener("pointermove", onMove);
       document.removeEventListener("mouseleave", onLeave);
       window.removeEventListener("click", onClick);

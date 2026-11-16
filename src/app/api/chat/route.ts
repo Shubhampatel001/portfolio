@@ -3,6 +3,8 @@ import { retrieve, MIN_CONFIDENT_SCORE } from "@/lib/retrieval";
 import { buildSystem, isKnownPersona } from "@/lib/chat-prompt";
 import { streamWithFallback } from "@/lib/llm/chain";
 import type { ChatMessage } from "@/lib/llm/types";
+import { matchSmallTalk, talkLine } from "@/lib/smalltalk";
+import { cleanInput, guardStream, screenInput } from "@/lib/safety";
 
 export const maxDuration = 30;
 
@@ -31,7 +33,7 @@ function parseMessages(raw: unknown): ChatMessage[] | null {
   const out: ChatMessage[] = [];
   for (const m of raw.slice(-MAX_HISTORY)) {
     if (!m || (m.role !== "user" && m.role !== "assistant") || typeof m.content !== "string") return null;
-    out.push({ role: m.role, content: m.content.slice(0, MAX_INPUT) });
+    out.push({ role: m.role, content: cleanInput(m.content.slice(0, MAX_INPUT)) });
   }
   while (out.length && out[0].role !== "user") out.shift();
   return out.length && out[out.length - 1].role === "user" ? out : null;
@@ -40,10 +42,8 @@ function parseMessages(raw: unknown): ChatMessage[] | null {
 const textHeaders = { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store" };
 
 /** Last resort when every LLM is unavailable: answer straight from the best-matching facts. */
-function noLlmAnswer(found: ReturnType<typeof retrieve>): string {
-  if (!found.length || found[0].score < MIN_CONFIDENT_SCORE) {
-    return "I don't have that information. You can ask about Shubham's experience, projects, skills or availability, or email him directly from the contact section.";
-  }
+function noLlmAnswer(found: ReturnType<typeof retrieve>, persona: string): string {
+  if (!found.length || found[0].score < MIN_CONFIDENT_SCORE) return talkLine(persona, "fallback");
   const top = found.slice(0, 2).map((h) => `${h.title}\n${h.text.slice(0, 600)}`);
   return `Here is what I have on that:\n\n${top.join("\n\n")}`;
 }
@@ -67,6 +67,15 @@ export async function POST(req: NextRequest) {
   if (!messages) return new Response("Invalid messages.", { status: 400, headers: textHeaders });
 
   const persona = isKnownPersona(body.persona) ? body.persona : "pixel";
+  const canned = (kind: Parameters<typeof talkLine>[1]) =>
+    new Response(talkLine(persona, kind), { headers: { ...textHeaders, "x-chat-provider": "canned" } });
+
+  // Greetings, thanks and the like, plus obvious abuse, private-info asks and jailbreaks, never reach the model.
+  const last = messages[messages.length - 1].content;
+  const small = matchSmallTalk(last);
+  if (small) return canned(small);
+  const blocked = screenInput(last);
+  if (blocked) return canned(blocked.kind);
   // Retrieve on the last two user turns so follow-ups like "tell me more" keep their topic.
   const query = messages
     .filter((m) => m.role === "user")
@@ -80,14 +89,14 @@ export async function POST(req: NextRequest) {
   const result = await streamWithFallback({ system: buildSystem(persona, found), messages }, skip);
 
   if (!result) {
-    return new Response(noLlmAnswer(found), { headers: { ...textHeaders, "x-chat-provider": "none" } });
+    return new Response(noLlmAnswer(found, persona), { headers: { ...textHeaders, "x-chat-provider": "none" } });
   }
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
-        for await (const delta of result.stream) controller.enqueue(encoder.encode(delta));
+        for await (const delta of guardStream(result.stream, talkLine(persona, "private"))) controller.enqueue(encoder.encode(delta));
       } catch (err) {
         console.warn("[chat] stream interrupted:", err instanceof Error ? err.message : err);
       } finally {

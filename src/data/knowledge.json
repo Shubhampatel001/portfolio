@@ -128,131 +128,155 @@
  {
   "id": "notes-21",
   "source": "notes",
+  "title": "LinkedIn profile",
+  "text": "Software Engineer at LTM with experience building enterprise-grade applications in the Property & Casualty Insurance domain. I specialize in full-stack development, modern web technologies, cloud-based solutions, and Guidewire ecosystem development.\n\nOver the past year, I have contributed to large-scale enterprise projects, collaborated with cross-functional teams, and led a team of 5 developers to deliver business-critical features. My experience includes designing scalable applications, improving user experiences, reviewing code, mentoring junior developers, and translating business requirements into technical solutions.\n\nTechnical skills include Java, JavaScript, TypeScript, React, Next.js, Node.js, Spring Boot, REST APIs, SQL, PostgreSQL, MongoDB, Git, GitHub, Docker, Google Cloud Platform (GCP), Guidewire Jutro, HTML, CSS, Tailwind CSS, Agile Development, CI/CD, Software Design, System Integration, Unit Testing, and Full-Stack Development.\nI am passionate about building products that solve real business problems and continuously improving my engineering, leadership, and communication skills. I am also actively exploring AI-powered applications, SaaS products, cloud technologies, and scalable software architecture.\n\nOpen to connecting with software engineers, product builders, recruiters, and technology leaders."
+ },
+ {
+  "id": "notes-22",
+  "source": "notes",
   "title": "Interests outside work",
   "text": "Video editing (Adobe Premiere Pro, After Effects), volunteering with NGOs on fundraising and awareness campaigns, and mountaineering (completed a Basic Mountaineering Course)."
  },
  {
-  "id": "github-22",
+  "id": "notes-23",
+  "source": "notes",
+  "title": "About Shubham in one minute",
+  "text": "Shubham Patel is a Software Engineer at LTM (LTIMindtree) in Pune. He works across full-stack development (Spring Boot, Angular, React, Next.js, Node.js, PostgreSQL) and Guidewire PolicyCenter in the property and casualty insurance domain, and is growing into GenAI and RAG systems. He has built 3+ full-stack applications, led a 5-member team on the FarmAid Gladiator project, and scored 90%+ across his enterprise training milestones."
+ },
+ {
+  "id": "notes-24",
+  "source": "notes",
+  "title": "How to reach Shubham",
+  "text": "The easiest way is the email address in the contact section of this site. He is also on GitHub and LinkedIn; both links are in the contact section. Questions about personal details, pay or notice period are best discussed with him directly by email."
+ },
+ {
+  "id": "notes-25",
+  "source": "notes",
+  "title": "Common questions",
+  "text": "What is Shubham's current role? Software Engineer at LTM (LTIMindtree), Pune, since June 2025.\nHas he led a team? Yes. He led and mentored a 5-member team on the FarmAid Gladiator project: sprint planning, task allocation, code reviews, testing and delivery.\nWhat does he work with? Java, Spring Boot, Angular, React, Next.js, Node.js, PostgreSQL, REST APIs, Spring Security, Swagger, Guidewire PolicyCenter and Jutro, plus applied ML and RAG.\nDoes he have non-engineering experience? Yes. He worked as a video editor at AnsrCoach (Premiere Pro, After Effects) and interned at Jindal Steel & Power.\nWhat does he do outside work? Video editing, volunteering with NGOs on fundraising and awareness campaigns, and mountaineering."
+ },
+ {
+  "id": "github-26",
   "source": "github",
   "title": "GitHub repo: memtomem (fork)",
-  "text": "memtomem is a fork of an open-source project (not originally authored by Shubham). Long-term memory for AI coding agents, kept as Markdown you own. Hybrid BM25 + vector search over your notes and code via MCP — one local store shared across Claude Code, Codex, Cursor, OpenCode, and more. Hook-free by default. Language: n/a. Last pushed: 2026-11-14. Live: https://memtomem.com. https://github.com/Shubhampatel001/memtomem"
+  "text": "memtomem is a GitHub fork of another repository. Long-term memory for AI coding agents, kept as Markdown you own. Hybrid BM25 + vector search over your notes and code via MCP — one local store shared across Claude Code, Codex, Cursor, OpenCode, and more. Hook-free by default. Language: n/a. Last pushed: 2026-11-14. Live: https://memtomem.com. https://github.com/Shubhampatel001/memtomem"
  },
  {
-  "id": "github-23",
+  "id": "github-27",
   "source": "github",
   "title": "GitHub repo: flisk (fork)",
-  "text": "flisk is a fork of an open-source project (not originally authored by Shubham). The local runtime your AI coding agent can start, check and fix. One command runs your multi-service app from a Compose file or plain commands, and an MCP server gives Claude Code, Cursor and Codex its health, logs and controls. MIT, no account. Language: n/a. Last pushed: 2026-11-12. Live: https://flisk.sh. https://github.com/Shubhampatel001/flisk"
+  "text": "flisk is a GitHub fork of another repository. The local runtime your AI coding agent can start, check and fix. One command runs your multi-service app from a Compose file or plain commands, and an MCP server gives Claude Code, Cursor and Codex its health, logs and controls. MIT, no account. Language: n/a. Last pushed: 2026-11-12. Live: https://flisk.sh. https://github.com/Shubhampatel001/flisk"
  },
  {
-  "id": "github-24",
+  "id": "github-28",
   "source": "github",
   "title": "GitHub repo: Shubhampatel001",
   "text": "Shubhampatel001. No description. Language: n/a. Last pushed: 2026-10-04. https://github.com/Shubhampatel001/Shubhampatel001\nREADME: &nbsp; -- ⚡ Full-Stack · Frontend · Backend · AI · Cloud · Guidewire Digital --- 👋 Hey, I'm Shubham Full-Stack Software Engineer who enjoys building complete products — from polished interfaces and APIs to databases, authentication, cloud deployment, and AI-powered features. text Frontend → React • Next.js • Angular • Tailwind Backend → Java • Spring Boot • Node.js • FastAPI Data → PostgreSQL • MySQL • MongoDB AI → RAG • Embeddings • LLM APIs Cloud & DevOps → Google Cloud • Docker • GitHub Actions Guidewire → Jutro Digital • PolicyCenter I don't just write code. I like building things people can use. --- 🚀 Featured Projects 🔎 Perplexa AI Search × RAG × LLMs An AI-powered search and chat application that retrieves web content, finds relevant context using embeddings, and generates grounded responses. ↗ View Project 🌾 FarmAid Full-Stack Agricultural Platform A complete platform for farmers and loan officers with authentication, role-based access, applications, approvals, documents, testing, Docker and CI. ↗ View Project 🚗 EvoDrive Evolutionary Autonomous Driving A browser-based driving simulation where autonomous behaviour evolves through genetic algorithms, pathfinding and collision detection. ↗ View Project 🐦 Flappy Bird × NEAT Teaching an AI to Play A Flappy Bird implementation where a neural network evolves through neuroevolution and fitness-based optimization. ↗ View P"
  },
  {
-  "id": "github-25",
+  "id": "github-29",
   "source": "github",
   "title": "GitHub repo: farmAid",
   "text": "farmAid. FarmAid is a web application that helps farmers find agricultural loan schemes, apply online and track their applications, while loan officers (admins) manage the schemes and approve or reject applications. Language: Java. Last pushed: 2026-10-04. Live: https://farmaid-onhl.onrender.com/. https://github.com/Shubhampatel001/farmAid\nREADME: 🌾 FarmAid ![CI](https://github.com/Shubhampatel001/farmAid/actions/workflows/ci.yml) ![License: MIT](LICENSE) FarmAid is a web application that helps farmers find agricultural loan schemes, apply online and track their applications , while loan officers (admins) manage the schemes and approve or reject applications. 🌐 Live demo: https://farmaid-onhl.onrender.com Log in with the demo accounts listed below. The demo runs on a free server that sleeps when unused, so the first visit can take about a minute to load. --- 🎯 Try it in 3 steps (Demo mode, no technical setup) Demo mode runs the complete application on your computer with sample data and ready-made accounts . You don't need to install a database or change any settings. 1. Install Docker Desktop Download it from https://www.docker.com/products/docker-desktop/ , install it (restart your computer if asked), then open it and wait until it says \"Engine running\" . 2. Get FarmAid On the GitHub page, click the green Code button → Download ZIP , then extract (unzip) it, for example to your Desktop. Using Git? git clone https://github.com/Shubhampatel001/farmAid.git 3. Start it Your computer What to do --- --- Windows Open the extracted folder and double-click start-demo.cmd macOS / Linux Open a terminal in the folder and run bash start-demo.sh The first start takes a few minutes while everything is prepared; later starts take se"
  },
  {
-  "id": "github-26",
+  "id": "github-30",
   "source": "github",
   "title": "GitHub repo: atelier-store",
   "text": "atelier-store. No description. Language: TypeScript. Last pushed: 2026-10-03. https://github.com/Shubhampatel001/atelier-store\nREADME: Atelier Store eCommerce app foundation built on: - Next.js (App Router, TypeScript) - Tailwind CSS v4 - Better Auth for authentication - Drizzle ORM with Neon serverless Postgres Getting started 1. Install dependencies: bash npm install 2. Copy the env template and fill in your values: bash cp .env.example .env.local - DATABASE URL — Neon connection string - BETTER AUTH SECRET — generate with npx auth@latest secret 3. Start the dev server: bash npm run dev Better Auth is mounted at /api/auth/ . It returns errors until its tables exist (see below). Project structure drizzle.config.ts Drizzle Kit config (reads .env.local) src/app/api/auth/[...all]/ Better Auth route handler src/db/index.ts Drizzle client (Neon HTTP driver) src/db/schema/ Drizzle table definitions src/lib/auth.ts Better Auth server instance src/lib/auth-client.ts Better Auth React client Scripts Script Description ----------------------- ---------------------------------------------------- npm run dev Start the dev server npm run build Production build npm run lint Run ESLint npm run typecheck Type-check with tsc npm run db:generate Generate SQL migrations from the schema npm run db:migrate Apply migrations npm run db:push Push schema directly to the database (prototyping) npm run db:studio Open Drizzle Studio npm run auth:generate Generate Better Auth tables into src/db/schema/auth.ts Better Auth's tables are not"
  },
  {
-  "id": "github-27",
+  "id": "github-31",
   "source": "github",
   "title": "GitHub repo: anisha-naman-wedding",
   "text": "anisha-naman-wedding. Digital Invitation card Language: JavaScript. Last pushed: 2026-03-14. Live: https://anisha-naman-wedding.vercel.app. https://github.com/Shubhampatel001/anisha-naman-wedding\nREADME: React + Vite This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules. Currently, two official plugins are available: - @vitejs/plugin-react uses Babel (or oxc when used in rolldown-vite) for Fast Refresh - @vitejs/plugin-react-swc uses SWC for Fast Refresh React Compiler The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see this documentation. Expanding the ESLint configuration If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the TS template for information on how to integrate TypeScript and typescript-eslint in your project."
  },
  {
-  "id": "github-28",
+  "id": "github-32",
   "source": "github",
   "title": "GitHub repo: skills-getting-started-with-github-copilot",
   "text": "skills-getting-started-with-github-copilot. Exercise: Get started using GitHub Copilot Language: Python. Last pushed: 2025-12-18. https://github.com/Shubhampatel001/skills-getting-started-with-github-copilot\nREADME: 🎉 Congratulations Shubhampatel001! 🎉 🌟 You've successfully completed the exercise! 🌟 🚀 Share Your Success! Show off your new skills and inspire others! 🎯 What's Next? Keep the momentum going! ![](https://github.com/Shubhampatel001/skills-getting-started-with-github-copilot/issues/1) ![GitHub Skills](https://learn.github.com/skills) There's no better way to learn than building things! 🚀 --- &copy; 2025 GitHub &bull; Code of Conduct &bull; MIT License"
  },
  {
-  "id": "github-29",
+  "id": "github-33",
   "source": "github",
   "title": "GitHub repo: Perplexa (fork)",
-  "text": "Perplexa is a fork of an open-source project (not originally authored by Shubham). A smart web-searching AI that transforms your questions into accurate, reliable answers backed by real-time information. Language: Jupyter Notebook. Last pushed: 2025-04-12. Live: https://perplexa.streamlit.app/. https://github.com/Shubhampatel001/Perplexa"
+  "text": "Perplexa is a GitHub fork of another repository. A smart web-searching AI that transforms your questions into accurate, reliable answers backed by real-time information. Language: Jupyter Notebook. Last pushed: 2025-04-12. Live: https://perplexa.streamlit.app/. https://github.com/Shubhampatel001/Perplexa"
  },
  {
-  "id": "github-30",
+  "id": "github-34",
   "source": "github",
   "title": "GitHub repo: My-Portfolio",
   "text": "My-Portfolio. No description. Language: n/a. Last pushed: 2025-01-02. https://github.com/Shubhampatel001/My-Portfolio\nREADME: My-Portfolio"
  },
  {
-  "id": "github-31",
+  "id": "github-35",
   "source": "github",
   "title": "GitHub repo: EvoDrive-Genetic-Algorithm-for-Autonomous-Driving",
   "text": "EvoDrive-Genetic-Algorithm-for-Autonomous-Driving. EvoDrive is a project that combines genetic algorithms with advanced simulation techniques to create a pseudo-3D autonomous driving environment. Language: JavaScript. Last pushed: 2024-12-09. Live: https://shubhampatel001.github.io/EvoDrive-Genetic-Algorithm-for-Autonomous-Driving/. https://github.com/Shubhampatel001/EvoDrive-Genetic-Algorithm-for-Autonomous-Driving\nREADME: EvoDrive - Genetic Algorithm for Autonomous Driving 🚗💡 EvoDrive is a project that combines genetic algorithms with advanced simulation techniques to create a pseudo-3D autonomous driving environment. Initially inspired by NEAT (NeuroEvolution of Augmenting Topologies), our project has evolved into a broader implementation of genetic algorithms for self-driving car simulations. This project demonstrates the use of AI to handle tasks such as obstacle avoidance, shortest path navigation, and dynamic world interaction. --- Table of Contents - Project Overview - Features - Technologies Used - How It Works - Installation - Challenges Faced - Future Plans --- Project Overview EvoDrive aims to simulate the following features in a dynamic environment: 1. Autonomous driving using genetic algorithms for evolutionary learning. 2. Handling stationary and moving obstacles in a realistic road setup. 3. Building a pseudo-3D environment with interactive elements such as traffic lights and road signs. 4. Dynamic route selection and shortest path computation using algorithms like Dijkstra’s. 5. Real-time visualization of neural network decisions. --- Features Core Functionalities - Genetic Algorithm for AI Evolution : Mutation-based learning for car decision-making. - Obstacle Detection and Avoidance : Sensors simulate real-world proximity detection. - Shortest Path Navigation : Implementation"
  },
  {
-  "id": "github-32",
+  "id": "github-36",
   "source": "github",
   "title": "GitHub repo: Flappy-Bird-With-NEAT-Algorithm",
   "text": "Flappy-Bird-With-NEAT-Algorithm. Contains manual gameplay and AI gameplay versions of Flappy Bird. Language: Jupyter Notebook. Last pushed: 2024-11-22. https://github.com/Shubhampatel001/Flappy-Bird-With-NEAT-Algorithm\nREADME: Optimization of Flappy Bird using NEAT This project implements the classic Flappy Bird game using the NEAT (NeuroEvolution of Augmenting Topologies) algorithm, allowing an AI to learn to play the game autonomously. NEAT is a genetic algorithm that evolves neural networks to perform tasks, in this case, playing Flappy Bird. Clone the repository to your local machine: git git clone https://github.com/Shubhampatel001/Flappy-Bird-With-NEAT-Algorithm Install the required Python modules using pip: python pip install -r requirements.txt This command will install the necessary dependencies, including neat-python and pygame. Usage To play Flappy Bird manually: Open the \"Base Model Flappy Bird.ipynb\" notebook. Execute the cells to control the bird and navigate through the pipes. To watch the AI agent train itself: Open the \"NEAT Algo Flappy Bird.ipynb\" notebook. Run the cells to train the NEAT algorithm and observe the AI gameplay. To watch the AI agent play: Run python python test.py Notes Ensure that you have Python and Jupyter Notebook installed on your system before running the notebooks. Configuration The feedforward.txt file contains the NEAT configuration parameters. You can adjust these parameters to change the behavior of the NEAT algorithm and experiment with different settings to improve the AI's performance. Additional Folders Documentations: Contains abstracts, references, a"
  },
  {
-  "id": "github-33",
+  "id": "github-37",
   "source": "github",
   "title": "GitHub repo: Legal-Docs",
   "text": "Legal-Docs. Legal Docs is a web application designed to streamline the management and accessibility of legal documents. Language: CSS. Last pushed: 2024-10-08. Live: https://shubhampatel001.github.io/Legal-Docs/. https://github.com/Shubhampatel001/Legal-Docs\nREADME: Legal Docs Legal Docs is a web application designed to streamline the management and accessibility of legal documents. This project serves as a comprehensive platform for users to view, create, and manage legal documents with ease. Features - User-friendly Interface: An intuitive design that allows for efficient navigation and interaction. - Secure Storage: Safely store and retrieve legal documents with ease. - Responsive Design: Optimized viewing experience across desktop, tablet, and mobile devices. - AI ChatBot Integration: Quick assistance through a built-in chat functionality powered by Voiceflow. Technologies Used - Frontend: HTML, CSS, JavaScript - AI ChatBot Integration: Voiceflow for chat functionalities Getting Started To get started with the Legal Docs project, clone this repository and open the index.html file in your browser. You can also explore the codebase for a deeper understanding of the implementation. Contributing Contributions are welcome! If you have suggestions or improvements, please fork the repository and submit a pull request. Acknowledgments - Voiceflow for providing the chat integration feature. Feel free to explore, contribute, and provide feedback on the Legal Docs project!"
  },
  {
-  "id": "github-34",
+  "id": "github-38",
   "source": "github",
   "title": "GitHub repo: dlt (fork)",
-  "text": "dlt is a fork of an open-source project (not originally authored by Shubham). data load tool (dlt) is an open source Python library that makes data loading easy 🛠️  Language: n/a. Last pushed: 2024-10-01. Live: https://dlthub.com/docs. https://github.com/Shubhampatel001/dlt"
+  "text": "dlt is a GitHub fork of another repository. data load tool (dlt) is an open source Python library that makes data loading easy 🛠️  Language: n/a. Last pushed: 2024-10-01. Live: https://dlthub.com/docs. https://github.com/Shubhampatel001/dlt"
  },
  {
-  "id": "github-35",
+  "id": "github-39",
   "source": "github",
   "title": "GitHub repo: Dice-Game",
   "text": "Dice-Game. Created an interactive dice game (HTML, CSS, JavaScript) with single-player selection. Generates random numbers for two dice and displays the winner based on the higher roll. Language: HTML. Last pushed: 2024-03-13. Live: https://shubhampatel001.github.io/Dice-Game/. https://github.com/Shubhampatel001/Dice-Game\nREADME: Dice-Game Roll the Dice! (HTML/CSS/JavaScript) Feeling lucky? Test your fate with this interactive dice game in your browser! To play the game \"Refresh\" your browser. Challenge the odds! Pick your opponent (it's just you... for now ). Click the button and watch the dice roll! The die (or should we say dice?) with the higher number wins! Feeling like a coding whiz? ‍‍ The code is well-structured and uses HTML, CSS, and JavaScript. Feel free to tinker and add features like multiple players, fancy animations, or even sound effects! Let the games begin! https://shubhampatel001.github.io/Dice-Game/"
  },
  {
-  "id": "github-36",
+  "id": "github-40",
   "source": "github",
   "title": "GitHub repo: Drum-Kit",
   "text": "Drum-Kit. Developed a web-based drum kit application that simulates sounds using keyboard input or touch interaction. Language: JavaScript. Last pushed: 2024-03-07. Live: https://shubhampatel001.github.io/Drum-Kit/. https://github.com/Shubhampatel001/Drum-Kit\nREADME: Drum-Kit Drum Up Some Fun! (HTML/CSS/JS) Play a virtual drum kit right in your browser! No fancy equipment needed, just tap the pads or smash your keyboard ⌨️ to unleash your inner rockstar here https://shubhampatel001.github.io/Drum-Kit/ Features: Play iconic percussion sounds (customizable!) ⌨️ Intuitive keyboard mapping for easy drumming Touchscreen friendly for a more immersive experience ️ Easy-to-understand code for customization Ready to jam? Clone the repo, open index.html, and start drumming! Feeling creative? Explore the code and make it your own! ✨"
  },
  {
-  "id": "github-37",
+  "id": "github-41",
   "source": "github",
   "title": "GitHub repo: Simon-Game-Challenge",
   "text": "Simon-Game-Challenge. Simon is a memory game where some buttons shows a sequence of lights and sounds. You repeat the sequence by pressing corresponding buttons. The game gets harder as the sequence lengthens, testing your memory and coordination. Language: JavaScript. Last pushed: 2024-03-07. Live: https://shubhampatel001.github.io/Simon-Game-Challenge/. https://github.com/Shubhampatel001/Simon-Game-Challenge\nREADME: Simon-Game-Challenge Simon Game (HTML, CSS, JavaScript) This repository contains a web-based implementation of the classic Simon game. Players test their memory and reflexes by replicating a sequence of colored lights and sounds. The game progressively increases in difficulty as the sequence lengthens. Features: Authentic gameplay: Mimics the classic Simon game experience. Visually appealing UI: Clean and user-friendly interface. Interactive sound effects: Each color button has a corresponding sound. Customizable difficulty: Challenge yourself with increasing sequence lengths. TRY the Game here - https://shubhampatel001.github.io/Simon-Game-Challenge/"
  },
  {
-  "id": "github-38",
+  "id": "github-42",
   "source": "github",
   "title": "GitHub repo: Resourceify (fork)",
-  "text": "Resourceify is a fork of an open-source project (not originally authored by Shubham). No description. Language: Jupyter Notebook. Last pushed: 2023-10-30. Live: https://data-science-community-srm.github.io/Resourceify/. https://github.com/Shubhampatel001/Resourceify"
+  "text": "Resourceify is a GitHub fork of another repository. No description. Language: Jupyter Notebook. Last pushed: 2023-10-30. Live: https://data-science-community-srm.github.io/Resourceify/. https://github.com/Shubhampatel001/Resourceify"
  },
  {
-  "id": "github-39",
+  "id": "github-43",
   "source": "github",
   "title": "GitHub repo: HactoberFest2023 (fork)",
-  "text": "HactoberFest2023 is a fork of an open-source project (not originally authored by Shubham). This is for HacktoberFest2023 Language: C++. Last pushed: 2023-10-30. https://github.com/Shubhampatel001/HactoberFest2023"
+  "text": "HactoberFest2023 is a GitHub fork of another repository. This is for HacktoberFest2023 Language: C++. Last pushed: 2023-10-30. https://github.com/Shubhampatel001/HactoberFest2023"
  },
  {
-  "id": "github-40",
+  "id": "github-44",
   "source": "github",
   "title": "GitHub repo: tindog",
   "text": "tindog. A dating Website for Dogs Language: HTML. Last pushed: 2020-07-28. Live: https://shubhampatel001.github.io/tindog. https://github.com/Shubhampatel001/tindog\nREADME: tindog"
  },
  {
-  "id": "github-41",
+  "id": "github-45",
   "source": "github",
   "title": "GitHub repo: cv",
   "text": "cv. This is my First CV ( Sample_) Language: HTML. Last pushed: 2020-06-23. Live: https://shubhampatel001.github.io/cv. https://github.com/Shubhampatel001/cv\nREADME: cv"
  },
  {
-  "id": "github-42",
+  "id": "github-46",
   "source": "github",
   "title": "GitHub repo: site",
   "text": "site. This is my First Website Language: HTML. Last pushed: 2020-06-22. Live: https://shubhampatel001.github.io/site/. https://github.com/Shubhampatel001/site\nREADME: site"
